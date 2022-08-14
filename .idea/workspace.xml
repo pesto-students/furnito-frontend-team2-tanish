@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/furnito-frontend-team2-tanish.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/admin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/footer/footer.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/header/header.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/loading/loading.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/popular-products/popular-products.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product/product.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/404/four-oh-four.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/admin/dashboard/dashboard.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/auth/auth.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/cart/cart.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/home.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/product-details/product-details.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/products/products.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/authentication/authentication.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/categories-preview/categories-preview.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/category/category.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/checkout/checkout.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/four-zero-four/four-zero-four.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/home/home.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/navigation/navigation.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/shop/shop.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1659762325" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1659761360" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d3eb180e-8363-41e5-a136-07b16762682e" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Cy3LDzL3vWi1woOGSjDRe9h6Sp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Project.color": "040a0b",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Pesto/Furnito/furnito-frontend-team2-tanish/src/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "D:\\Pesto\\Furnito\\furnito-frontend-team2-tanish\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "zielu.gittoolbox.prj.config.v2",
+    "ts.external.directory.path": "D:\\Pesto\\Furnito\\furnito-frontend-team2-tanish\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TypeScript JSX"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
+      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\routes" />
+      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\components\layout" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start-dev">
+    <configuration name="start-dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start-dev" />
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="" />
+      <created>1659760938734</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659760938734</updated>
+      <workItem from="1659760942414" duration="1747000" />
+      <workItem from="1660278254207" duration="1390000" />
+      <workItem from="1660279679588" duration="50502000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component" />
+  </component>
+</project>

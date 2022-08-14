@@ -50,6 +50,13 @@
         "react/jsx-props-no-spreading": [
             "warn"
         ],
+        "jsx-a11y/label-has-associated-control": [
+            "error",
+            {
+                "controlComponents": ["Field"],
+                "assert": "both"
+            }
+        ],
         "no-shadow": "off"
     }
 }
