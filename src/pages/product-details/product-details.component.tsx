@@ -1,9 +1,11 @@
 import React from "react";
 import PopularProducts from "../../components/popular-products/popular-products.component";
+import SeoDataComponent from "../../components/layout/seo/seo-data.component";
 
 function ProductDetailsComponent() {
   return (
     <>
+      <SeoDataComponent title="Product Details" />
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
