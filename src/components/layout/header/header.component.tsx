@@ -117,7 +117,7 @@ function HeaderComponent() {
               </li>
               <li>
                 <Link
-                  to="/register"
+                  to="/profile"
                   className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-100 md:p-0"
                 >
                   Profile

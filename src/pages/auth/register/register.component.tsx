@@ -1,5 +1,4 @@
 import React, { FormEvent, useEffect } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { CircularProgress, TextField, InputLabel } from "@mui/material";
 import useInput from "../../../hooks/input/use-input";
@@ -60,7 +59,7 @@ function RegisterComponent() {
     if (isSuccess) {
       dispatch(reset());
       clearForm();
-      navigate("/signin");
+      navigate("../login", { replace: true });
     }
   }, [isSuccess, dispatch]);
 

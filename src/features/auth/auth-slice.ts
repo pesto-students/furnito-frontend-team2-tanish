@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import "react-toastify/dist/ReactToastify.min.css";
 import type { RootState } from "../../app/store";
 import authService from "./services/auth.service";
 import { DisplayUser } from "./models/display-user.model";
@@ -9,7 +8,6 @@ import { LoginUser } from "./models/login-user";
 
 const storedUser: string | null = localStorage.getItem("user");
 const user: DisplayUser | null = storedUser ? JSON.parse(storedUser) : null;
-
 const storedJwt: string | null = localStorage.getItem("jwt");
 const jwt: Jwt = storedJwt ? JSON.parse(storedJwt) : null;
 
@@ -88,23 +86,27 @@ export const authSlice = createSlice({
       .addCase(register.pending, (state) => {
         const State = { ...state };
         State.isLoading = true;
+        return State;
       })
       .addCase(register.fulfilled, (state, action) => {
         const State = { ...state };
         State.isLoading = false;
         State.isSuccess = true;
         State.user = action.payload;
+        return State;
       })
       .addCase(register.rejected, (state) => {
         const State = { ...state };
         State.isLoading = false;
         State.isError = true;
         State.user = null;
+        return State;
       })
       // LOGIN
       .addCase(login.pending, (state) => {
         const State = { ...state };
         State.isLoading = true;
+        return State;
       })
       .addCase(login.fulfilled, (state, action) => {
         const State = { ...state };
@@ -113,6 +115,7 @@ export const authSlice = createSlice({
         State.jwt = action.payload.jwt;
         State.isAuthenticated = true;
         State.user = action.payload.user;
+        return State;
       })
       .addCase(login.rejected, (state) => {
         const State = { ...state };
@@ -121,6 +124,7 @@ export const authSlice = createSlice({
         State.user = null;
         State.isAuthenticated = false;
         State.user = null;
+        return State;
       })
       // LOGOUT
       .addCase(logout.fulfilled, (state) => {
@@ -128,23 +132,27 @@ export const authSlice = createSlice({
         State.user = null;
         State.jwt = null;
         State.isAuthenticated = false;
+        return State;
       })
       // VERIFY JWT
       .addCase(verifyJwt.pending, (state) => {
         const State = { ...state };
         State.isLoading = true;
+        return State;
       })
       .addCase(verifyJwt.fulfilled, (state, action) => {
         const State = { ...state };
         State.isLoading = false;
         State.isSuccess = true;
         State.isAuthenticated = action.payload;
+        return State;
       })
       .addCase(verifyJwt.rejected, (state) => {
         const State = { ...state };
         State.isLoading = false;
         State.isError = true;
         State.isAuthenticated = false;
+        return State;
       });
   },
 });

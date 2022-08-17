@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
-import { CircularProgress, TextField, InputLabel } from "@mui/material";
+import { TextField, InputLabel } from "@mui/material";
+import { toast } from "react-toastify";
 import useInput from "../../../hooks/input/use-input";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import { reset, login } from "../../../features/auth/auth-slice";
@@ -39,6 +39,7 @@ function LoginComponent() {
 
   useEffect(() => {
     if (isSuccess) {
+      toast.success("Login Successful");
       dispatch(reset());
       clearForm();
     }
@@ -46,7 +47,8 @@ function LoginComponent() {
 
   useEffect(() => {
     if (!isAuthenticated) return;
-    navigate("/");
+
+    navigate("../home");
   }, [isAuthenticated, navigate]);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -61,8 +63,7 @@ function LoginComponent() {
     dispatch(login(loginUser));
   };
 
-  if (isLoading)
-    return <CircularProgress sx={{ marginTop: "64px" }} color="primary" />;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <section className="bg-gray-50">
@@ -73,9 +74,10 @@ function LoginComponent() {
               Login to your account
             </h1>
             <form
+              action="/login"
               onSubmit={onSubmitHandler}
+              method="POST"
               className="space-y-4 md:space-y-6"
-              action="/src/pages"
             >
               <div>
                 <InputLabel htmlFor="email">Email</InputLabel>
@@ -119,7 +121,7 @@ function LoginComponent() {
                 Login
               </button>
               <p className="text-sm font-light text-secondary-100">
-                Do not have an account{" "}
+                Do not have an account?{" "}
                 <Link
                   to="/register"
                   className="font-medium text-primary-400 hover:underline"
