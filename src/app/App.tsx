@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import HeaderComponent from "../components/layout/header/header.component";
 import FooterComponent from "../components/layout/footer/footer.component";
 
 import ProfileComponent from "../pages/profile/profile.component";
+import HeaderComponent from "../components/layout/header/header.component";
+import AdminComponent from "../pages/admin/admin.component";
 
 // lazy loading routes
 const Home = lazy(() => import("../pages/home/home.component"));
@@ -25,10 +26,21 @@ const PrivateRoute = lazy(
 );
 
 function App() {
+  const location = useLocation();
   return (
     <div className="flex flex-col ">
       <ToastContainer autoClose={3000} />
-      <HeaderComponent />
+      {location.pathname !== "/login" &&
+      location.pathname !== "/register" &&
+      location.pathname !== "/admin" &&
+      location.pathname !== "/admin/dashboard" &&
+      location.pathname !== "/admin/customers" &&
+      location.pathname !== "/admin/orders" &&
+      location.pathname !== "/admin/products" &&
+      location.pathname !== "/admin/products/new" &&
+      location.pathname !== "/admin/reviews" ? (
+        <HeaderComponent />
+      ) : null}
       <Routes>
         <Route
           path="/*"
@@ -104,8 +116,19 @@ function App() {
             </Suspense>
           }
         />
+        <Route path="/admin/*" element={<AdminComponent />} />
       </Routes>
-      <FooterComponent />
+      {location.pathname !== "/login" &&
+      location.pathname !== "/register" &&
+      location.pathname !== "/admin" &&
+      location.pathname !== "/admin/dashboard" &&
+      location.pathname !== "/admin/customers" &&
+      location.pathname !== "/admin/orders" &&
+      location.pathname !== "/admin/products" &&
+      location.pathname !== "/admin/products/new" &&
+      location.pathname !== "/admin/reviews" ? (
+        <FooterComponent />
+      ) : null}
     </div>
   );
 }

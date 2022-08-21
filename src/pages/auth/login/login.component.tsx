@@ -47,7 +47,6 @@ function LoginComponent() {
 
   useEffect(() => {
     if (!isAuthenticated) return;
-
     navigate("../home");
   }, [isAuthenticated, navigate]);
 

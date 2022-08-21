@@ -17,8 +17,12 @@ const validateNameLength: ValidatorFn = (text: string): boolean => {
   return validateLength(text, { min: 2 });
 };
 
+const validateStockLength: ValidatorFn = (text: string): boolean => {
+  return validateLength(text, { min: 1, max: 3 });
+};
+
 const validatePasswordLength: ValidatorFn = (text: string): boolean => {
   return validateLength(text, { min: 6, max: 20 });
 };
 
-export { validateNameLength, validatePasswordLength };
+export { validateNameLength, validateStockLength, validatePasswordLength };
