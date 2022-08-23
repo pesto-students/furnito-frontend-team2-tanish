@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/features/product/models/paginated-sort-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/footer/footer.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/footer/footer.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/models/product-form-field.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/models/product-form-field.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/product-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/product-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/services/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/products/product-new.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/product-new.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/products/products.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/products.component.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,7 +141,7 @@
       <workItem from="1661064336607" duration="33525000" />
       <workItem from="1661149931317" duration="8780000" />
       <workItem from="1661172424646" duration="16902000" />
-      <workItem from="1661272066541" duration="1061000" />
+      <workItem from="1661272066541" duration="1361000" />
     </task>
     <task id="LOCAL-00001" summary="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component">
       <created>1660455555085</created>
@@ -182,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661114966481</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Footer Updated&#10;Create Product Form&#10;Product State Updated&#10;Products Data Table implemented">
+      <created>1661273710787</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661273710787</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +200,7 @@
     <MESSAGE value="User Registration &#10;User Login &#10;404 page image added&#10;Validation" />
     <MESSAGE value="Implemented Alert -&gt; Toastify library" />
     <MESSAGE value="Data Table base reusable component create&#10;Product and User dummy data table&#10;Add New product from" />
-    <option name="LAST_COMMIT_MESSAGE" value="Data Table base reusable component create&#10;Product and User dummy data table&#10;Add New product from" />
+    <MESSAGE value="Footer Updated&#10;Create Product Form&#10;Product State Updated&#10;Products Data Table implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Footer Updated&#10;Create Product Form&#10;Product State Updated&#10;Products Data Table implemented" />
   </component>
 </project>
