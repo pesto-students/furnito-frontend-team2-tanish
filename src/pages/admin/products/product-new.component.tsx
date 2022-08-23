@@ -1,89 +1,91 @@
-import {
-  CircularProgress,
-  InputLabel,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import { CircularProgress, InputLabel, TextField } from "@mui/material";
 import React, { FormEvent, SetStateAction, useEffect, useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import useInput from "../../../hooks/input/use-input";
 import {
   validateNameLength,
   validateStockLength,
 } from "../../../shared/utils/validation/length";
-import Categories from "../../../utils/catergories.data";
 import ProductImageUploadComponent from "./product-image-upload.component";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import { ProductFormFieldModel } from "../../../features/product/models/product-form-field.model";
-import { addProduct } from "../../../features/product/product-slice";
-import { reset } from "../../../features/auth/auth-slice";
+import { addProduct, reset } from "../../../features/product/product-slice";
 
 function ProductNewComponent() {
-  const [Category, setCategory] = useState("");
   const [imgUrl, setImgUrl] = useState("");
 
   const dispatch = useAppDispatch();
   const { isLoading, isSuccess } = useAppSelector((state) => state.product);
-  const navigate = useNavigate();
 
   const getImageUrl = (img: SetStateAction<string>) => {
     setImgUrl(img);
   };
 
-  const handleChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setCategory(event.target.value);
-  };
-
   const {
-    text: productName,
-    shouldDisplayError: productNameHasError,
-    textChangeHandler: productNameChangeHandler,
-    inputBlurHandler: productNameBlurHandler,
+    text: name,
+    shouldDisplayError: nameHasError,
+    textChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    clearHandler: nameClearHandler,
   } = useInput(validateNameLength);
 
   const {
-    text: productPrice,
-    shouldDisplayError: productPriceHasError,
-    textChangeHandler: productPriceChangeHandler,
-    inputBlurHandler: productPriceBlurHandler,
+    text: price,
+    shouldDisplayError: priceHasError,
+    textChangeHandler: priceChangeHandler,
+    inputBlurHandler: priceBlurHandler,
+    clearHandler: priceClearHandler,
   } = useInput(validateNameLength);
 
   const {
-    text: productStock,
-    shouldDisplayError: productStockHasError,
-    textChangeHandler: productStockChangeHandler,
-    inputBlurHandler: productStockBlurHandler,
+    text: stock,
+    shouldDisplayError: stockHasError,
+    textChangeHandler: stockChangeHandler,
+    inputBlurHandler: stockBlurHandler,
+    clearHandler: stockClearHandler,
   } = useInput(validateStockLength);
 
   const {
-    text: productDescription,
-    shouldDisplayError: productDescriptionHasError,
-    textChangeHandler: productDescriptionChangeHandler,
-    inputBlurHandler: productDescriptionBlurHandler,
+    text: description,
+    shouldDisplayError: descriptionHasError,
+    textChangeHandler: descriptionChangeHandler,
+    inputBlurHandler: descriptionBlurHandler,
+    clearHandler: descriptionClearHandler,
   } = useInput(validateNameLength);
 
-  function clearForm() {}
+  const {
+    text: category,
+    shouldDisplayError: categoryHasError,
+    textChangeHandler: categoryChangeHandler,
+    inputBlurHandler: categoryBlurHandler,
+    clearHandler: categoryClearHandler,
+  } = useInput(validateNameLength);
+
+  function clearForm() {
+    nameClearHandler();
+    priceClearHandler();
+    stockClearHandler();
+    descriptionClearHandler();
+    categoryClearHandler();
+    setImgUrl("");
+  }
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(reset());
       clearForm();
-      navigate("../", { replace: true });
     }
-  }, [isSuccess, dispatch]);
+  }, [isSuccess]);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const productFormFieldModel: ProductFormFieldModel = {
-      productName,
-      productPrice,
-      productStock,
-      productDescription,
-      productCategory: Category,
-      productImage: imgUrl,
+      name,
+      price,
+      stock,
+      description,
+      category,
+      image: imgUrl,
     };
     dispatch(addProduct(productFormFieldModel));
   };
@@ -130,22 +132,20 @@ function ProductNewComponent() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <InputLabel
                   className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="productName"
+                  htmlFor="name"
                 >
                   Name
                 </InputLabel>
                 <TextField
                   fullWidth
-                  value={productName}
-                  onChange={productNameChangeHandler}
-                  onBlur={productNameBlurHandler}
-                  error={productNameHasError}
-                  helperText={
-                    productNameHasError ? "Enter the Product name" : ""
-                  }
+                  value={name}
+                  onChange={nameChangeHandler}
+                  onBlur={nameBlurHandler}
+                  error={nameHasError}
+                  helperText={nameHasError ? "Enter the Product name" : ""}
                   type="text"
-                  name="productName"
-                  id="productName"
+                  name="name"
+                  id="name"
                   variant="outlined"
                   size="small"
                 />
@@ -153,27 +153,25 @@ function ProductNewComponent() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <InputLabel
                   className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="productPrice"
+                  htmlFor="price"
                 >
                   Price
                 </InputLabel>
                 <TextField
                   fullWidth
-                  value={productPrice}
-                  onChange={productPriceChangeHandler}
-                  onBlur={productPriceBlurHandler}
-                  error={productPriceHasError}
-                  helperText={
-                    productPriceHasError ? "Enter the valid Amount" : ""
-                  }
+                  value={price}
+                  onChange={priceChangeHandler}
+                  onBlur={priceBlurHandler}
+                  error={priceHasError}
+                  helperText={priceHasError ? "Enter the valid Amount" : ""}
                   inputProps={{
                     min: "10.00",
                     max: "10000.00",
                     step: "0.01",
                   }}
                   type="number"
-                  name="productPrice"
-                  id="productName"
+                  name="price"
+                  id="name"
                   variant="outlined"
                   size="small"
                 />
@@ -185,7 +183,7 @@ function ProductNewComponent() {
               <div className="w-full px-3">
                 <InputLabel
                   className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="productDescription"
+                  htmlFor="description"
                 >
                   Description
                 </InputLabel>
@@ -194,18 +192,16 @@ function ProductNewComponent() {
                   rows={3}
                   maxRows={6}
                   fullWidth
-                  value={productDescription}
-                  onChange={productDescriptionChangeHandler}
-                  onBlur={productDescriptionBlurHandler}
-                  error={productDescriptionHasError}
+                  value={description}
+                  onChange={descriptionChangeHandler}
+                  onBlur={descriptionBlurHandler}
+                  error={descriptionHasError}
                   helperText={
-                    productDescriptionHasError
-                      ? "Enter the Product Description"
-                      : ""
+                    descriptionHasError ? "Enter the Product Description" : ""
                   }
                   type="text"
-                  name="productDescription"
-                  id="productDescription"
+                  name="description"
+                  id="description"
                   variant="outlined"
                   size="small"
                 />
@@ -217,53 +213,49 @@ function ProductNewComponent() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <InputLabel
                   className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="productName"
+                  htmlFor="name"
                 >
                   Category
                 </InputLabel>
                 <TextField
                   fullWidth
-                  value={Category}
-                  onChange={handleChange}
+                  value={category}
+                  onChange={categoryChangeHandler}
+                  onBlur={categoryBlurHandler}
+                  error={categoryHasError}
+                  helperText={
+                    categoryHasError ? "Enter the Product Category" : ""
+                  }
                   type="text"
-                  name="productCategory"
-                  id="productCategory"
+                  name="category"
+                  id="category"
                   variant="outlined"
                   size="small"
-                  helperText="Please select category"
-                >
-                  {Categories.map((option) => (
-                    <MenuItem key={option.value} value={option.label}>
-                      {option.label} {option.value}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                />
               </div>
 
               {/*  Stock */}
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <InputLabel
                   className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="productStock"
+                  htmlFor="stock"
                 >
                   Stock
                 </InputLabel>
                 <TextField
                   fullWidth
-                  value={productStock}
-                  onChange={productStockChangeHandler}
-                  onBlur={productStockBlurHandler}
-                  error={productStockHasError}
-                  helperText={
-                    productStockHasError ? "Enter the valid Stock" : ""
-                  }
+                  value={stock}
+                  onChange={stockChangeHandler}
+                  onBlur={stockBlurHandler}
+                  error={stockHasError}
+                  helperText={stockHasError ? "Enter the valid Stock" : ""}
                   inputProps={{
                     min: "1",
                     max: "100",
                   }}
                   type="number"
-                  name="productStock"
-                  id="productStock"
+                  name="stock"
+                  id="stock"
                   variant="outlined"
                   size="small"
                 />
@@ -272,16 +264,29 @@ function ProductNewComponent() {
               {/*  Image Upload */}
               <div className="w-full px-3 mb-6 md:mb-0">
                 {imgUrl.length > 0 ? (
-                  <>
-                    <FiTrash2 onClick={() => setImgUrl("")} />
-                    <p className="break-all">{imgUrl}</p>
-                  </>
+                  <div className="w-full px-3 mb-6 md:mb-0 flex p-4">
+                    <FiTrash2
+                      onClick={() => setImgUrl("")}
+                      className="m-4"
+                      size="24px"
+                      color="orange"
+                    />
+                    <a
+                      className="break-all"
+                      href={imgUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {imgUrl}
+                    </a>
+                  </div>
                 ) : (
                   <ProductImageUploadComponent getImageUrl={getImageUrl} />
                 )}
               </div>
             </div>
             <button
+              onClick={() => onSubmitHandler}
               type="submit"
               className="w-full text-white bg-primary-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >

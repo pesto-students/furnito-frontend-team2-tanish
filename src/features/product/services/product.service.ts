@@ -1,12 +1,13 @@
 import axios from "axios";
 import { ProductFormFieldModel } from "../models/product-form-field.model";
+import { PaginatedSortModel } from "../models/paginated-sort-model";
 
 const addProduct = async (
   product: ProductFormFieldModel,
 ): Promise<any | null> => {
   const response = await axios.post(
     `${process.env.REACT_APP_BASE_API}/product/add`,
-    { product },
+    product,
   );
   return response.data;
 };
@@ -21,10 +22,10 @@ const updateProduct = async (
   return response.data;
 };
 
-const deleteProduct = async (id: string): Promise<any | null> => {
-  const response = await axios.post(
+const deleteProduct = async (productId: string): Promise<any | null> => {
+  const response = await axios.delete(
     `${process.env.REACT_APP_BASE_API}/product/delete`,
-    { id },
+    { params: { id: productId } },
   );
   return response.data;
 };
@@ -36,11 +37,22 @@ const fetchProduct = async (id: string): Promise<any | null> => {
   return response.data;
 };
 
+const fetchProducts = async (
+  paginatedSortData: PaginatedSortModel,
+): Promise<ProductFormFieldModel[]> => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_BASE_API}/product/get`,
+    { params: paginatedSortData },
+  );
+  return response.data;
+};
+
 const productService = {
   addProduct,
   updateProduct,
   deleteProduct,
   fetchProduct,
+  fetchProducts,
 };
 
 export default productService;

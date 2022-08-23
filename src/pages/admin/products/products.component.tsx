@@ -1,185 +1,87 @@
-import { IconContext } from "react-icons";
 import { HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi";
-import { useMemo } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DataTableBase from "../../../components/data-table/data-table.component";
-
-function handleButtonClick(Id: any, action: any) {
-  console.log(Id, action);
-}
-
-const columns = [
-  {
-    name: "Id",
-    sortable: true,
-    selector: (row: { Id: string }) => row.Id,
-  },
-  {
-    name: "Name",
-    sortable: true,
-    selector: (row: { Name: number }) => row.Name,
-  },
-  {
-    name: "Stock",
-    sortable: true,
-    selector: (row: { Stock: number }) => row.Stock,
-  },
-  {
-    name: "Price (₹)",
-    sortable: true,
-    selector: (row: { Price: number }) => row.Price,
-  },
-  {
-    name: "Action",
-    cell: (row: { Id: any }) => (
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      <IconContext.Provider value={{ color: "blue" }}>
-        <HiOutlinePencilAlt
-          color="#3BB9FF"
-          fontSize="1.2rem"
-          onClick={() => handleButtonClick(row, "edit")}
-        />
-        <HiOutlineTrash
-          color="#FFA62F"
-          fontSize="1.2rem"
-          onClick={() => handleButtonClick(row, "delete")}
-        />
-      </IconContext.Provider>
-    ),
-    ignoreRowClick: true,
-    allowOverflow: true,
-    button: true,
-  },
-];
-
-const data = [
-  {
-    Id: 1,
-    Name: "Sofa",
-    Stock: "5",
-    Price: "2000",
-  },
-  {
-    Id: 2,
-    Name: "Chair",
-    Stock: "10",
-    Price: "1000",
-  },
-  {
-    Id: 3,
-    Name: "Table",
-    Stock: "15",
-    Price: "3000",
-  },
-  {
-    Id: 4,
-    Name: "Bed",
-    Stock: "20",
-    Price: "4000",
-  },
-  {
-    Id: 5,
-    Name: "Cupboard",
-    Stock: "25",
-    Price: "5000",
-  },
-  {
-    Id: 11,
-    Name: "Sofa",
-    Stock: "5",
-    Price: "2000",
-  },
-  {
-    Id: 21,
-    Name: "Chair",
-    Stock: "10",
-    Price: "1000",
-  },
-  {
-    Id: 31,
-    Name: "Table",
-    Stock: "15",
-    Price: "3000",
-  },
-  {
-    Id: 41,
-    Name: "Bed",
-    Stock: "20",
-    Price: "4000",
-  },
-  {
-    Id: 51,
-    Name: "Cupboard",
-    Stock: "25",
-    Price: "5000",
-  },
-  {
-    Id: 12,
-    Name: "Sofa",
-    Stock: "5",
-    Price: "2000",
-  },
-  {
-    Id: 22,
-    Name: "Chair",
-    Stock: "10",
-    Price: "1000",
-  },
-  {
-    Id: 32,
-    Name: "Table",
-    Stock: "15",
-    Price: "3000",
-  },
-  {
-    Id: 42,
-    Name: "Bed",
-    Stock: "20",
-    Price: "4000",
-  },
-  {
-    Id: 52,
-    Name: "Cupboard",
-    Stock: "25",
-    Price: "5000",
-  },
-  {
-    Id: 13,
-    Name: "Sofa",
-    Stock: "5",
-    Price: "2000",
-  },
-  {
-    Id: 23,
-    Name: "Chair",
-    Stock: "10",
-    Price: "1000",
-  },
-  {
-    Id: 33,
-    Name: "Table",
-    Stock: "15",
-    Price: "3000",
-  },
-  {
-    Id: 43,
-    Name: "Bed",
-    Stock: "20",
-    Price: "4000",
-  },
-  {
-    Id: 53,
-    Name: "Cupboard",
-    Stock: "25",
-    Price: "5000",
-  },
-];
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
+import {
+  deleteProduct,
+  fetchProducts,
+  reset,
+} from "../../../features/product/product-slice";
 
 function ProductsComponent() {
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { isLoading, isSuccess, paginatedSortData, products } = useAppSelector(
+    (state) => state.product,
+  );
 
-  const subHeaderComponentMemo = useMemo(() => {}, []);
+  function handleButtonClick(id: any, action: string) {
+    if (action === "delete") {
+      dispatch(deleteProduct(id));
+    }
+  }
+
+  const columns = [
+    {
+      name: "Id",
+      sortable: true,
+      selector: (row: { _id: string }) => row._id,
+    },
+    {
+      name: "Name",
+      sortable: true,
+      selector: (row: { name: number }) => row.name,
+    },
+    {
+      name: "Stock",
+      sortable: true,
+      selector: (row: { stock: number }) => row.stock,
+    },
+    {
+      name: "Price (₹)",
+      sortable: true,
+      selector: (row: { price: number }) => row.price,
+    },
+    {
+      name: "Action",
+      // eslint-disable-next-line react/no-unstable-nested-components
+      cell: (row: { _id: any }) => (
+        <>
+          <HiOutlinePencilAlt
+            color="#3BB9FF"
+            fontSize="1.2rem"
+            onClick={() => handleButtonClick(row._id, "edit")}
+          />
+          <HiOutlineTrash
+            color="#FFA62F"
+            fontSize="1.2rem"
+            onClick={() => handleButtonClick(row._id, "delete")}
+          />
+        </>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+    },
+  ];
+
+  useEffect(() => {
+    dispatch(fetchProducts(paginatedSortData));
+  }, []);
+
+  if (isSuccess) {
+    // @ts-ignore
+    setData(products);
+    dispatch(reset());
+  }
+
+  if (isLoading)
+    return <CircularProgress sx={{ marginTop: "64px" }} color="primary" />;
+
   return (
     <div className="ml-auto pt-6 mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
       <div className="sticky top-0 h-16 border-b bg-white lg:py-2.5">
@@ -199,11 +101,7 @@ function ProductsComponent() {
       </div>
       <div className="px-6 pt-6 2xl:container">
         <div className="justify-center items-center">
-          <DataTableBase
-            columns={columns}
-            data={data}
-            subHeaderComponent={subHeaderComponentMemo}
-          />
+          <DataTableBase columns={columns} data={data} />
         </div>
       </div>
     </div>

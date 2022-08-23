@@ -1,8 +1,8 @@
 export interface ProductFormFieldModel {
-  productName: string;
-  productPrice: number;
-  productStock: number;
-  productDescription: string;
-  productCategory: string;
-  productImage: string;
+  name: string;
+  price: number;
+  stock: number;
+  description: string;
+  category: string;
+  image: string;
 }

@@ -1,6 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 import productService from "./services/product.service";
+import { ProductFormFieldModel } from "./models/product-form-field.model";
+import { PaginatedSortModel } from "./models/paginated-sort-model";
+
+const products: ProductFormFieldModel[] = [];
+const paginatedSortData: PaginatedSortModel = {
+  page: 1,
+  limit: 10,
+  sortBy: "stock",
+  sortOrder: "asc",
+};
 
 interface AsyncState {
   isLoading: boolean;
@@ -8,7 +18,14 @@ interface AsyncState {
   isError: boolean;
 }
 
-const initialState: AsyncState = {
+interface ProductState extends AsyncState {
+  products?: ProductFormFieldModel[];
+  paginatedSortData?: PaginatedSortModel | any;
+}
+
+const initialState: ProductState = {
+  products,
+  paginatedSortData,
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -16,11 +33,22 @@ const initialState: AsyncState = {
 
 export const addProduct = createAsyncThunk(
   "product/add",
-  async (product: any, thunkAPI) => {
+  async (product: ProductFormFieldModel, thunkAPI) => {
     try {
       return await productService.addProduct(product);
     } catch (error) {
       return thunkAPI.rejectWithValue("Unable to add product");
+    }
+  },
+);
+
+export const fetchProducts = createAsyncThunk(
+  "product/fetch-all",
+  async (paginatedSortModel: PaginatedSortModel, thunkAPI) => {
+    try {
+      return await productService.fetchProducts(paginatedSortModel);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to fetch products");
     }
   },
 );
@@ -61,7 +89,15 @@ export const fetchProduct = createAsyncThunk(
 export const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      const State = { ...state };
+      State.isLoading = false;
+      State.isSuccess = false;
+      State.isError = false;
+      return State;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Add Product
@@ -81,10 +117,50 @@ export const productSlice = createSlice({
         State.isLoading = false;
         State.isError = true;
         return State;
+      })
+
+      // Fetch Products
+      .addCase(fetchProducts.pending, (state) => {
+        const State = { ...state };
+        State.isLoading = true;
+        return State;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.products = action.payload;
+        State.isSuccess = true;
+        return State;
+      })
+      .addCase(fetchProducts.rejected, (state) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.isError = true;
+        return State;
+      })
+
+      // Delete Product
+      .addCase(deleteProduct.pending, (state) => {
+        const State = { ...state };
+        State.isLoading = true;
+        return State;
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.products = action.payload;
+        State.isSuccess = true;
+        return State;
+      })
+      .addCase(deleteProduct.rejected, (state) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.isError = true;
+        return State;
       });
   },
 });
-
+export const { reset } = productSlice.actions;
 export const selectedProduct = (state: RootState) => {
   return state.product;
 };
