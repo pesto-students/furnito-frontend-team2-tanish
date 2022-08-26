@@ -1,8 +1,12 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 import productService from "./services/product.service";
-import { ProductFormFieldModel } from "./models/product-form-field.model";
+import {
+  ProductDocument,
+  ProductFormFieldModel,
+} from "./models/product-form-field.model";
 import { PaginatedSortModel } from "./models/paginated-sort-model";
+import { CartItem } from "./models/cart-item.model";
 
 const products: ProductFormFieldModel[] = [];
 const paginatedSortData: PaginatedSortModel = {
@@ -11,6 +15,7 @@ const paginatedSortData: PaginatedSortModel = {
   sortBy: "stock",
   sortOrder: "asc",
 };
+const cart: CartItem[] = [];
 
 interface AsyncState {
   isLoading: boolean;
@@ -21,10 +26,12 @@ interface AsyncState {
 interface ProductState extends AsyncState {
   products?: ProductFormFieldModel[];
   paginatedSortData?: PaginatedSortModel | any;
+  cart: CartItem[];
 }
 
 const initialState: ProductState = {
   products,
+  cart,
   paginatedSortData,
   isLoading: false,
   isSuccess: false,
@@ -36,7 +43,7 @@ export const addProduct = createAsyncThunk(
   async (product: ProductFormFieldModel, thunkAPI) => {
     try {
       return await productService.addProduct(product);
-    } catch (error) {
+    } catch (error: any) {
       return thunkAPI.rejectWithValue("Unable to add product");
     }
   },
@@ -86,6 +93,22 @@ export const fetchProduct = createAsyncThunk(
   },
 );
 
+// This code will be used to add/remove a product to the cart and update the cart quantity
+function modifyQtyByOne(
+  mCart: CartItem[],
+  payload: ProductDocument,
+  increment: string,
+) {
+  const cartItem = mCart.find((item) => item._id === payload._id);
+  if (cartItem) {
+    cartItem.quantity =
+      increment === "INCREMENT" ? cartItem.quantity + 1 : cartItem.quantity - 1;
+  } else {
+    mCart.push({ ...payload, quantity: 1 });
+  }
+  return mCart;
+}
+
 export const productSlice = createSlice({
   name: "product",
   initialState,
@@ -96,6 +119,24 @@ export const productSlice = createSlice({
       State.isSuccess = false;
       State.isError = false;
       return State;
+    },
+    resetCart: (state) => {
+      const State = { ...state };
+      State.cart = [];
+      return State;
+    },
+    incrementCart: (state, action: PayloadAction<ProductDocument>) => {
+      const State = { ...state };
+      State.cart = modifyQtyByOne(state.cart, action.payload, "INCREMENT");
+    },
+    decrementCart: (state, action: PayloadAction<ProductDocument>) => {
+      const State = { ...state };
+      State.cart = modifyQtyByOne(state.cart, action.payload, "DECREMENT");
+    },
+    removeItemFromCart: (state, action: PayloadAction<string>) => {
+      const State = { ...state };
+      State.cart = State.cart.filter((item) => item._id !== action.payload);
+      return State; // return the new state
     },
   },
   extraReducers: (builder) => {
@@ -123,7 +164,6 @@ export const productSlice = createSlice({
       .addCase(fetchProducts.pending, (state) => {
         const State = { ...state };
         State.isLoading = true;
-        return State;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         const State = { ...state };
@@ -160,7 +200,10 @@ export const productSlice = createSlice({
       });
   },
 });
-export const { reset } = productSlice.actions;
+
+export const { reset, resetCart, incrementCart, removeItemFromCart } =
+  productSlice.actions;
+
 export const selectedProduct = (state: RootState) => {
   return state.product;
 };

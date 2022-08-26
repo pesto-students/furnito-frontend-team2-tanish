@@ -1,7 +1,6 @@
 import React, { FormEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, InputLabel } from "@mui/material";
-import { toast } from "react-toastify";
 import useInput from "../../../hooks/input/use-input";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import { reset, login } from "../../../features/auth/auth-slice";
@@ -9,7 +8,7 @@ import validateEmail from "../../../shared/utils/validation/email";
 import { validatePasswordLength } from "../../../shared/utils/validation/length";
 import { LoginUser } from "../../../features/auth/models/login-user";
 
-function LoginComponent() {
+function LoginPage() {
   const {
     text: email,
     shouldDisplayError: emailHasError,
@@ -39,7 +38,6 @@ function LoginComponent() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Login Successful");
       dispatch(reset());
       clearForm();
     }
@@ -136,4 +134,4 @@ function LoginComponent() {
   );
 }
 
-export default LoginComponent;
+export default LoginPage;

@@ -11,7 +11,7 @@ import {
 } from "../../../shared/utils/validation/length";
 import { NewUser } from "../../../features/auth/models/new-user";
 
-function RegisterComponent() {
+function RegisterPage() {
   const {
     text: name,
     shouldDisplayError: nameHasError,
@@ -208,4 +208,4 @@ function RegisterComponent() {
   );
 }
 
-export default RegisterComponent;
+export default RegisterPage;

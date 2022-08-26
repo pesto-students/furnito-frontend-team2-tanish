@@ -6,3 +6,8 @@ export interface ProductFormFieldModel {
   category: string;
   image: string;
 }
+
+export interface ProductDocument extends ProductFormFieldModel {
+  _id: string;
+  __v: number;
+}

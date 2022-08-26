@@ -2,7 +2,7 @@ import React from "react";
 import PopularProducts from "../../components/popular-products/popular-products.component";
 import SeoDataComponent from "../../components/layout/seo/seo-data.component";
 
-function ProductDetailsComponent() {
+function ProductDetailsPage() {
   return (
     <>
       <SeoDataComponent title="Product Details" />
@@ -194,4 +194,4 @@ function ProductDetailsComponent() {
   );
 }
 
-export default ProductDetailsComponent;
+export default ProductDetailsPage;

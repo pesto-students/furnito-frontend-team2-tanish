@@ -6,7 +6,7 @@ import OrdersComponent from "./orders/orders.component";
 import ReviewsComponent from "./reviews/reviews.component";
 import SidebarComponent from "../../components/layout/sidebar/sidebar.component";
 import CustomersComponent from "./customers/customers.component";
-import FourOhFourComponent from "../404/four-oh-four.component";
+import FourOhFourPage from "../404/four-oh-four.page";
 import ProductNewComponent from "./products/product-new.component";
 
 function AdminComponent() {
@@ -21,7 +21,7 @@ function AdminComponent() {
         <Route path="/orders" element={<OrdersComponent />} />
         <Route path="/customers" element={<CustomersComponent />} />
         <Route path="/reviews" element={<ReviewsComponent />} />
-        <Route path="/*" element={<FourOhFourComponent />} />
+        <Route path="/*" element={<FourOhFourPage />} />
       </Routes>
     </div>
   );

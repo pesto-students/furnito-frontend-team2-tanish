@@ -59,7 +59,7 @@ function ProductImageUploadComponent(props: any) {
           ref={imgRef}
           type="file"
           onChange={handleChange}
-          accept="image/jpg,.gif,.png,.svg,"
+          accept="image/jpg,.gif,.png,.svg,.jpg,.jpeg,.webp"
         />
         {file.length > 0 ? (
           <>

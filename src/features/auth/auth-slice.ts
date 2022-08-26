@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import type { RootState } from "../../app/store";
 import authService from "./services/auth.service";
 import { DisplayUser } from "./models/display-user.model";
@@ -37,7 +38,9 @@ export const register = createAsyncThunk(
   async (rUser: NewUser, thunkAPI) => {
     try {
       return await authService.register(rUser);
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
       return thunkAPI.rejectWithValue("Unable to register!");
     }
   },

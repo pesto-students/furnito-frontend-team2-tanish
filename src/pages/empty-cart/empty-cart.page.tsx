@@ -2,18 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FourOhFour from "../../assets/images/404.png";
 
-function FourOhFourComponent() {
+function EmptyCartPage() {
   return (
     <section className="bg-white">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center">
           <img src={FourOhFour} alt="furnito" className="w-120 m-auto" />
           <p className="mb-4 text-3xl tracking-tight font-bold text-dark-shades-100 md:text-4xl">
-            Something is missing.
+            Oh! No items in cart.
           </p>
           <p className="mb-4 text-lg font-light text-gray-500">
-            Sorry, we can not find that page. You will find lots to explore on
-            the home page.{" "}
+            You can add items to cart by going to home page.{" "}
           </p>
           <Link
             to="/"
@@ -26,4 +25,4 @@ function FourOhFourComponent() {
     </section>
   );
 }
-export default FourOhFourComponent;
+export default EmptyCartPage;
