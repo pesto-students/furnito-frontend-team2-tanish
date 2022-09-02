@@ -71,7 +71,7 @@ function ProductsPage() {
 
   useEffect(() => {
     dispatch(fetchProducts(paginatedSortData));
-  });
+  }, []);
 
   if (isSuccess) {
     // @ts-ignore

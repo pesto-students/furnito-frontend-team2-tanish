@@ -76,7 +76,7 @@ function ProductNewPage() {
       dispatch(reset());
       clearForm();
     }
-  });
+  }, []);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

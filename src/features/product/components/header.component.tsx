@@ -20,7 +20,7 @@ function HeaderComponent() {
   useEffect(() => {
     const count = cart.reduce((acc, cur) => acc + cur.quantity, 0);
     setCartCount(count);
-  }, [cart]);
+  }, []);
 
   const logoutHandler = () => dispatch(logout());
 

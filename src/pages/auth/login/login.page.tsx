@@ -43,7 +43,7 @@ function LoginPage() {
       dispatch(reset());
       clearForm();
     }
-  });
+  }, []);
 
   useEffect(() => {
     window.scroll(0, 0);

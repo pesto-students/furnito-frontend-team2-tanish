@@ -62,7 +62,7 @@ function RegisterPage() {
       clearForm();
       navigate("../login", { replace: true });
     }
-  });
+  }, []);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
