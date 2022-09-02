@@ -2,7 +2,7 @@ import { useState, ChangeEvent, useRef } from "react";
 import { FiTrash2, FiUpload } from "react-icons/fi";
 import axios from "axios";
 
-function ProductImageUploadComponent(props: any) {
+function ImageUploaderComponent(props: any) {
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState("");
@@ -74,4 +74,4 @@ function ProductImageUploadComponent(props: any) {
   );
 }
 
-export default ProductImageUploadComponent;
+export default ImageUploaderComponent;

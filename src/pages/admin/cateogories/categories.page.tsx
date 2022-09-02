@@ -6,22 +6,21 @@ import { useNavigate } from "react-router-dom";
 import DataTableBase from "../../../components/data-table/data-table.component";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import {
-  deleteProduct,
-  fetchProducts,
+  deleteCategory,
+  fetchCategories,
   reset,
 } from "../../../features/product/product-slice";
 
-function ProductsComponent() {
+function CategoriesPage() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, isSuccess, paginatedSortData, products } = useAppSelector(
-    (state) => state.product,
-  );
+  const { isLoading, isSuccess, paginatedSortData, categories } =
+    useAppSelector((state) => state.product);
 
   function handleButtonClick(id: any, action: string) {
     if (action === "delete") {
-      dispatch(deleteProduct(id));
+      dispatch(deleteCategory(id));
     }
   }
 
@@ -37,14 +36,9 @@ function ProductsComponent() {
       selector: (row: { name: number }) => row.name,
     },
     {
-      name: "Stock",
+      name: "Image",
       sortable: true,
-      selector: (row: { stock: number }) => row.stock,
-    },
-    {
-      name: "Price (₹)",
-      sortable: true,
-      selector: (row: { price: number }) => row.price,
+      selector: (row: { image: number }) => row.image,
     },
     {
       name: "Action",
@@ -70,12 +64,12 @@ function ProductsComponent() {
   ];
 
   useEffect(() => {
-    dispatch(fetchProducts(paginatedSortData));
+    dispatch(fetchCategories(paginatedSortData));
   }, []);
 
   if (isSuccess) {
     // @ts-ignore
-    setData(products);
+    setData(categories);
     dispatch(reset());
   }
 
@@ -87,15 +81,15 @@ function ProductsComponent() {
       <div className="sticky top-0 h-16 border-b bg-white lg:py-2.5">
         <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
           <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
-            Products
+            Categories
           </h5>
           <button
-            onClick={() => navigate("/admin/products/new")}
+            onClick={() => navigate("/admin/categories/new")}
             type="button"
             className="text-white bg-primary-400 hover:bg-primary-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-400"
           >
             <AiOutlinePlusCircle className="w-4 h-4 mr-2" />
-            Add Product
+            Add Category
           </button>
         </div>
       </div>
@@ -108,4 +102,4 @@ function ProductsComponent() {
   );
 }
 
-export default ProductsComponent;
+export default CategoriesPage;

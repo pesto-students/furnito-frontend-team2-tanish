@@ -6,6 +6,7 @@ import { DisplayUser } from "./models/display-user.model";
 import { Jwt } from "./models/jwt.model";
 import { NewUser } from "./models/new-user";
 import { LoginUser } from "./models/login-user";
+import { PaginatedSortModel } from "../product/models/paginated-sort-model";
 
 const storedUser: string | null = localStorage.getItem("user");
 const user: DisplayUser | null = storedUser ? JSON.parse(storedUser) : null;
@@ -68,6 +69,17 @@ export const verifyJwt = createAsyncThunk(
       return await authService.verifyJwt(vJWT);
     } catch (error) {
       return thunkAPI.rejectWithValue("Unable to verify");
+    }
+  },
+);
+
+export const customers = createAsyncThunk(
+  "user/get",
+  async (cUsers: PaginatedSortModel, thunkAPI) => {
+    try {
+      return await authService.fetchCustomers(cUsers);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to get customers");
     }
   },
 );

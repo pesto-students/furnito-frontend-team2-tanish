@@ -34,7 +34,7 @@ function CartPage() {
       {cart.length > 0 ? (
         <section className="py-10">
           <div className="container max-w-screen-xl mx-auto px-4">
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row justify-around gap-4">
               <main className="md:3/4">
                 <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
                   {cart.map((cartItem) => (

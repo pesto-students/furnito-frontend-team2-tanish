@@ -37,13 +37,16 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Login";
+    window.scroll(0, 0);
     if (isSuccess) {
       dispatch(reset());
       clearForm();
     }
-  }, [isSuccess, dispatch]);
+  });
 
   useEffect(() => {
+    window.scroll(0, 0);
     if (!isAuthenticated) return;
     navigate("../home");
   }, [isAuthenticated, navigate]);

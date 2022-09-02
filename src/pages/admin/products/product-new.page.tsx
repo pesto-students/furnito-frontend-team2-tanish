@@ -6,12 +6,12 @@ import {
   validateNameLength,
   validateStockLength,
 } from "../../../shared/utils/validation/length";
-import ProductImageUploadComponent from "./product-image-upload.component";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import { ProductFormFieldModel } from "../../../features/product/models/product-form-field.model";
 import { addProduct, reset } from "../../../features/product/product-slice";
+import ImageUploaderComponent from "../../../components/image-uploader/impage.uploader.component";
 
-function ProductNewComponent() {
+function ProductNewPage() {
   const [imgUrl, setImgUrl] = useState("");
 
   const dispatch = useAppDispatch();
@@ -71,11 +71,12 @@ function ProductNewComponent() {
   }
 
   useEffect(() => {
+    window.scroll(0, 0);
     if (isSuccess) {
       dispatch(reset());
       clearForm();
     }
-  }, [isSuccess]);
+  });
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -281,7 +282,7 @@ function ProductNewComponent() {
                     </a>
                   </div>
                 ) : (
-                  <ProductImageUploadComponent getImageUrl={getImageUrl} />
+                  <ImageUploaderComponent getImageUrl={getImageUrl} />
                 )}
               </div>
             </div>
@@ -299,4 +300,4 @@ function ProductNewComponent() {
   );
 }
 
-export default ProductNewComponent;
+export default ProductNewPage;

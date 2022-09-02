@@ -8,8 +8,8 @@ function SingleProductComponent({ product }: { product: any }) {
 
   const controls = useAnimation();
   return (
-    <div className="flex flex-col items-center justify-center max-w-sm mx-auto mb-16">
-      <Link to="/product">
+    <div className="flex flex-col items-center justify-center max-w-sm mx-auto ml-12 mr-12 mb-24 ">
+      <Link to={`product/:${product._id}`}>
         <div className="w-full h-64  bg-center bg-cover rounded-lg ">
           <img
             onFocus={() => {
@@ -30,7 +30,7 @@ function SingleProductComponent({ product }: { product: any }) {
           scale: 1.2,
           transition: { duration: 0.4, ease: "linear" },
         }}
-        className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64"
+        className="w-56 -mt-4 overflow-hidden bg-white rounded-lg shadow-lg md:w-64"
       >
         <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase">
           {product.name}

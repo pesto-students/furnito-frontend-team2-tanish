@@ -1,4 +1,4 @@
-function DashboardComponent() {
+function DashboardPage() {
   return (
     <div className="ml-auto pt-6 mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
       <div className="sticky top-0 h-16 border-b bg-white lg:py-2.5">
@@ -33,4 +33,4 @@ function DashboardComponent() {
   );
 }
 
-export default DashboardComponent;
+export default DashboardPage;

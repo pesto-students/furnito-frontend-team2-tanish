@@ -7,7 +7,9 @@ import CartPage from "../pages/cart/cart.page";
 import RegisterPage from "../pages/auth/register/register.page";
 import LoginPage from "../pages/auth/login/login.page";
 import CheckoutPage from "../pages/checkout/checkout.page";
-import AdminComponent from "../pages/admin/admin.component";
+import AdminDashboard from "../pages/admin/admin.dashboard";
+import ProductDetailsPage from "../pages/product-details/product-details.page";
+import ProfilePage from "../pages/profile/profile.page";
 
 function App() {
   return (
@@ -19,6 +21,10 @@ function App() {
           element={<PrivateRouteComponent page={<HomePage />} />}
         />
         <Route
+          path="/product/:id"
+          element={<PrivateRouteComponent page={<ProductDetailsPage />} />}
+        />
+        <Route
           path="/cart"
           element={<PrivateRouteComponent page={<CartPage />} />}
         />
@@ -27,8 +33,12 @@ function App() {
           element={<PrivateRouteComponent page={<CheckoutPage />} />}
         />
         <Route
+          path="/profile"
+          element={<PrivateRouteComponent page={<ProfilePage />} />}
+        />
+        <Route
           path="/admin*"
-          element={<PrivateRouteComponent page={<AdminComponent />} />}
+          element={<PrivateRouteComponent page={<AdminDashboard />} />}
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

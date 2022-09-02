@@ -6,6 +6,7 @@ import { DisplayUser } from "../models/display-user.model";
 import { Jwt } from "../models/jwt.model";
 import { LoginUser } from "../models/login-user";
 import { NewUser } from "../models/new-user";
+import { PaginatedSortModel } from "../../product/models/paginated-sort-model";
 
 const register = async (newUser: NewUser): Promise<DisplayUser | null> => {
   const response = await toast.promise(
@@ -63,11 +64,28 @@ const verifyJwt = async (jwt: string): Promise<boolean> => {
   return false;
 };
 
+const fetchCustomers = async (
+  paginatedSortData: PaginatedSortModel,
+): Promise<any> => {
+  const response = await toast.promise(
+    axios.get(`${process.env.REACT_APP_BASE_API}/user/get`, {
+      params: paginatedSortData,
+    }),
+    {
+      pending: "Loading users...",
+      success: "Users loaded successfully",
+      error: "Unable to load users",
+    },
+  );
+  return response.data;
+};
+
 const authService = {
   register,
   verifyJwt,
   login,
   logout,
+  fetchCustomers,
 };
 
 export default authService;

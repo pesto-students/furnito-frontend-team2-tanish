@@ -56,12 +56,13 @@ function RegisterPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.document.title = "Register";
     if (isSuccess) {
       dispatch(reset());
       clearForm();
       navigate("../login", { replace: true });
     }
-  }, [isSuccess, dispatch]);
+  });
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

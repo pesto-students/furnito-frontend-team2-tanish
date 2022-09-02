@@ -1,14 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
-import productService from "./services/product.service";
 import {
   ProductDocument,
   ProductFormFieldModel,
 } from "./models/product-form-field.model";
 import { PaginatedSortModel } from "./models/paginated-sort-model";
 import { CartItem } from "./models/cart-item.model";
+import productService from "./services/product.service";
+import { CategoryFormFieldModel } from "./models/catetogy-form-field.model";
+import { OrderFormFieldModel } from "./models/order-form-field.model";
 
 const products: ProductFormFieldModel[] = [];
+const categories: CategoryFormFieldModel[] = [];
+const orders: OrderFormFieldModel[] = [];
+
 const paginatedSortData: PaginatedSortModel = {
   page: 1,
   limit: 10,
@@ -25,12 +30,16 @@ interface AsyncState {
 
 interface ProductState extends AsyncState {
   products?: ProductFormFieldModel[];
+  categories?: CategoryFormFieldModel[];
+  orders?: OrderFormFieldModel[];
   paginatedSortData?: PaginatedSortModel | any;
   cart: CartItem[];
 }
 
 const initialState: ProductState = {
   products,
+  categories,
+  orders,
   cart,
   paginatedSortData,
   isLoading: false,
@@ -56,6 +65,39 @@ export const fetchProducts = createAsyncThunk(
       return await productService.fetchProducts(paginatedSortModel);
     } catch (error) {
       return thunkAPI.rejectWithValue("Unable to fetch products");
+    }
+  },
+);
+
+export const fetchCategories = createAsyncThunk(
+  "categories/fetch-all",
+  async (paginatedSortModel: PaginatedSortModel, thunkAPI) => {
+    try {
+      return await productService.fetchCategories(paginatedSortModel);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to fetch products");
+    }
+  },
+);
+
+export const fetchOrders = createAsyncThunk(
+  "orders/fetch-all",
+  async (paginatedSortModel: PaginatedSortModel, thunkAPI) => {
+    try {
+      return await productService.fetchOrders(paginatedSortModel);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to fetch products");
+    }
+  },
+);
+
+export const deleteCategory = createAsyncThunk(
+  "category/delete",
+  async (id: string, thunkAPI) => {
+    try {
+      return await productService.deleteCategories(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to delete product");
     }
   },
 );
@@ -193,6 +235,44 @@ export const productSlice = createSlice({
         return State;
       })
       .addCase(deleteProduct.rejected, (state) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.isError = true;
+        return State;
+      })
+
+      // Fetch Categories
+      .addCase(fetchCategories.pending, (state) => {
+        const State = { ...state };
+        State.isLoading = true;
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.categories = action.payload;
+        State.isSuccess = true;
+        return State;
+      })
+      .addCase(fetchCategories.rejected, (state) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.isError = true;
+        return State;
+      })
+
+      // Fetch Orders
+      .addCase(fetchOrders.pending, (state) => {
+        const State = { ...state };
+        State.isLoading = true;
+      })
+      .addCase(fetchOrders.fulfilled, (state, action) => {
+        const State = { ...state };
+        State.isLoading = false;
+        State.orders = action.payload;
+        State.isSuccess = true;
+        return State;
+      })
+      .addCase(fetchOrders.rejected, (state) => {
         const State = { ...state };
         State.isLoading = false;
         State.isError = true;
