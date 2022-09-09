@@ -44,7 +44,10 @@ function CartPage() {
                           <figure className="flex leading-5">
                             <div>
                               <div className="block w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                                <img src={cartItem.image} alt="Title" />
+                                <img
+                                  src={String(cartItem.images[0])}
+                                  alt="Title"
+                                />
                               </div>
                             </div>
                             <figcaption className="ml-3">

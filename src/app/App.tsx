@@ -10,10 +10,11 @@ import CheckoutPage from "../pages/checkout/checkout.page";
 import AdminDashboard from "../pages/admin/admin.dashboard";
 import ProductDetailsPage from "../pages/product-details/product-details.page";
 import ProfilePage from "../pages/profile/profile.page";
+import SofaPage from "../pages/sofa/sofa.page.";
 
 function App() {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <ToastContainer autoClose={1000} position="bottom-right" draggable />
       <Routes>
         <Route
@@ -35,6 +36,10 @@ function App() {
         <Route
           path="/profile"
           element={<PrivateRouteComponent page={<ProfilePage />} />}
+        />
+        <Route
+          path="/categories/sofas"
+          element={<PrivateRouteComponent page={<SofaPage />} />}
         />
         <Route
           path="/admin*"

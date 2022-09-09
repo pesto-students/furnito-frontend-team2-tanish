@@ -5,7 +5,7 @@ const Categories = [
   },
   {
     value: "SOFA",
-    label: "Sofa",
+    label: "sofa",
   },
   {
     value: "BED",

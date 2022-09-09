@@ -101,7 +101,7 @@ const fetchProducts = async (
       error: "Unable to load products",
     },
   );
-  return response.data;
+  return response.data.products;
 };
 
 const fetchCategories = async (
@@ -138,6 +138,16 @@ const fetchOrders = async (
   return response.data;
 };
 
+const fetchProductById = async (id: string): Promise<any> => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_BASE_API}/product/get/${id}`,
+    {
+      ...headers,
+    },
+  );
+  return response.data;
+};
+
 const productService = {
   addProduct,
   updateProduct,
@@ -147,6 +157,7 @@ const productService = {
   fetchProducts,
   fetchCategories,
   fetchOrders,
+  fetchProductById,
 };
 
 export default productService;

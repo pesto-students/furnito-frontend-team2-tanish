@@ -1,10 +1,21 @@
+export interface Review {
+  name: string;
+  rating: number;
+  comment: string;
+  _id: string;
+  id: string;
+}
+
 export interface ProductFormFieldModel {
   name: string;
-  price: number;
-  stock: number;
   description: string;
+  price: number;
+  images: Array<URL>;
   category: string;
-  image: string;
+  stock: number;
+  numberOfReviews: number;
+  ratings: number;
+  reviews: Array<Review>;
 }
 
 export interface ProductDocument extends ProductFormFieldModel {

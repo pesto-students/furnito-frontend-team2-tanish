@@ -11,7 +11,6 @@ import {
   fetchOrders,
   selectedProduct,
 } from "../../../features/product/product-slice";
-import { DisplayUser } from "../../../features/auth/models/display-user.model";
 
 function OrdersPage() {
   const [data, setData] = useState([]);
@@ -30,11 +29,6 @@ function OrdersPage() {
       name: "Id",
       sortable: true,
       selector: (row: { _id: string }) => row._id,
-    },
-    {
-      name: "Email",
-      sortable: true,
-      selector: (row: { user: DisplayUser }) => row.user.email,
     },
     {
       name: "Total(₹)",

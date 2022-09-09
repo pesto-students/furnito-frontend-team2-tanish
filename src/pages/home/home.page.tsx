@@ -3,6 +3,7 @@ import hero from "../../assets/images/hero.png";
 import PopularProducts from "../../components/popular-products/popular-products.component";
 import FooterComponent from "../../components/layout/footer/footer.component";
 import HeaderComponent from "../../features/product/components/header.component";
+import CategoriesComponent from "../../components/categories/categories.component";
 
 function HomePage() {
   return (
@@ -30,6 +31,7 @@ function HomePage() {
             <img src={hero} alt="hero" />
           </div>
         </section>
+        <CategoriesComponent />
         <PopularProducts />
       </main>
       <FooterComponent />

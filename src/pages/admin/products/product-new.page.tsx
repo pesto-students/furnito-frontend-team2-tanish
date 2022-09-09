@@ -1,5 +1,5 @@
 import { CircularProgress, InputLabel, TextField } from "@mui/material";
-import React, { FormEvent, SetStateAction, useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
 import useInput from "../../../hooks/input/use-input";
 import {
@@ -9,17 +9,16 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import { ProductFormFieldModel } from "../../../features/product/models/product-form-field.model";
 import { addProduct, reset } from "../../../features/product/product-slice";
-import ImageUploaderComponent from "../../../components/image-uploader/impage.uploader.component";
+import Dropzone from "../../../components/dropzone/dropzone.component";
 
 function ProductNewPage() {
-  const [imgUrl, setImgUrl] = useState("");
+  const [urls, setUrls] = useState(Array<URL>());
+  const getImageUrl = (images: React.SetStateAction<Array<URL>>) => {
+    setUrls(images);
+  };
 
   const dispatch = useAppDispatch();
   const { isLoading, isSuccess } = useAppSelector((state) => state.product);
-
-  const getImageUrl = (img: SetStateAction<string>) => {
-    setImgUrl(img);
-  };
 
   const {
     text: name,
@@ -37,13 +36,8 @@ function ProductNewPage() {
     clearHandler: priceClearHandler,
   } = useInput(validateNameLength);
 
-  const {
-    text: stock,
-    shouldDisplayError: stockHasError,
-    textChangeHandler: stockChangeHandler,
-    inputBlurHandler: stockBlurHandler,
-    clearHandler: stockClearHandler,
-  } = useInput(validateStockLength);
+  const { text: stock, clearHandler: stockClearHandler } =
+    useInput(validateStockLength);
 
   const {
     text: description,
@@ -53,13 +47,8 @@ function ProductNewPage() {
     clearHandler: descriptionClearHandler,
   } = useInput(validateNameLength);
 
-  const {
-    text: category,
-    shouldDisplayError: categoryHasError,
-    textChangeHandler: categoryChangeHandler,
-    inputBlurHandler: categoryBlurHandler,
-    clearHandler: categoryClearHandler,
-  } = useInput(validateNameLength);
+  const { text: category, clearHandler: categoryClearHandler } =
+    useInput(validateNameLength);
 
   function clearForm() {
     nameClearHandler();
@@ -67,7 +56,7 @@ function ProductNewPage() {
     stockClearHandler();
     descriptionClearHandler();
     categoryClearHandler();
-    setImgUrl("");
+    setUrls(Array<URL>());
   }
 
   useEffect(() => {
@@ -80,15 +69,22 @@ function ProductNewPage() {
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const productFormFieldModel: ProductFormFieldModel = {
+    const productFormFieldModel: {
+      images: URL[];
+      price: any;
+      name: any;
+      description: any;
+      stock: any;
+      category: any;
+    } = {
       name,
       price,
       stock,
       description,
       category,
-      image: imgUrl,
+      images: urls,
     };
-    dispatch(addProduct(productFormFieldModel));
+    dispatch(addProduct(productFormFieldModel as ProductFormFieldModel));
   };
 
   if (isLoading)
@@ -210,82 +206,31 @@ function ProductNewPage() {
             </div>
 
             {/* Category & Stock */}
+            {/*  Image Upload */}
             <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <InputLabel
-                  className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="name"
-                >
-                  Category
-                </InputLabel>
-                <TextField
-                  fullWidth
-                  value={category}
-                  onChange={categoryChangeHandler}
-                  onBlur={categoryBlurHandler}
-                  error={categoryHasError}
-                  helperText={
-                    categoryHasError ? "Enter the Product Category" : ""
-                  }
-                  type="text"
-                  name="category"
-                  id="category"
-                  variant="outlined"
-                  size="small"
-                />
-              </div>
-
-              {/*  Stock */}
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <InputLabel
-                  className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="stock"
-                >
-                  Stock
-                </InputLabel>
-                <TextField
-                  fullWidth
-                  value={stock}
-                  onChange={stockChangeHandler}
-                  onBlur={stockBlurHandler}
-                  error={stockHasError}
-                  helperText={stockHasError ? "Enter the valid Stock" : ""}
-                  inputProps={{
-                    min: "1",
-                    max: "100",
-                  }}
-                  type="number"
-                  name="stock"
-                  id="stock"
-                  variant="outlined"
-                  size="small"
-                />
-              </div>
-
-              {/*  Image Upload */}
               <div className="w-full px-3 mb-6 md:mb-0">
-                {imgUrl.length > 0 ? (
-                  <div className="w-full px-3 mb-6 md:mb-0 flex p-4">
-                    <FiTrash2
-                      onClick={() => setImgUrl("")}
-                      className="m-4"
-                      size="24px"
-                      color="orange"
-                    />
-                    <a
-                      className="break-all"
-                      href={imgUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {imgUrl}
-                    </a>
-                  </div>
+                {urls.length > 0 ? (
+                  urls.map((url: any, index: number) => (
+                    <div className="flex items-center content-between justify-between">
+                      <img src={url} className="w-1/6 object-cover" alt="img" />
+                      <FiTrash2
+                        className="text-red-500 hover:text-red-700 cursor-pointer"
+                        onClick={() => {
+                          setUrls(
+                            urls.filter((_url: URL, _index: number) => {
+                              return index !== _index;
+                            }),
+                          );
+                        }}
+                      />
+                    </div>
+                  ))
                 ) : (
-                  <ImageUploaderComponent getImageUrl={getImageUrl} />
+                  <Dropzone getImageUrl={getImageUrl} />
                 )}
               </div>
             </div>
+
             <button
               onClick={() => onSubmitHandler}
               type="submit"

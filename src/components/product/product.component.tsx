@@ -9,21 +9,22 @@ function SingleProductComponent({ product }: { product: any }) {
   const controls = useAnimation();
   return (
     <div className="flex flex-col items-center justify-center max-w-sm mx-auto ml-12 mr-12 mb-24 ">
-      <Link to={`product/:${product._id}`}>
-        <div className="w-full h-64  bg-center bg-cover rounded-lg ">
-          <img
-            onFocus={() => {
-              controls.start({
-                x: 1500,
-                scale: 1,
-                transition: { duration: 1, ease: "easeInOut" },
-              });
-            }}
-            src={product.image}
-            alt="product"
-            className="w-full h-full object-cover object-center "
-          />
-        </div>
+      <Link
+        to={`product/${product._id}`}
+        className="w-full h-64  bg-center bg-cover rounded-lg "
+      >
+        <img
+          onFocus={() => {
+            controls.start({
+              x: 1500,
+              scale: 1,
+              transition: { duration: 1, ease: "easeInOut" },
+            });
+          }}
+          src={product.images[0]}
+          alt="product"
+          className="w-full h-full object-cover object-center "
+        />
       </Link>
       <motion.div
         whileHover={{

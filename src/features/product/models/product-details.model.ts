@@ -13,6 +13,9 @@ export interface Feedback {
 }
 
 export interface Review {
-  id: number;
-  review: string;
+  name: string;
+  rating: number;
+  comment: string;
+  _id: string;
+  id: string;
 }

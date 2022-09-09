@@ -2,15 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/carousel/carousel.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sofa/sofa.page..tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/private-route/private-route.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/private-route/private-route.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/product.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/product.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/product/components/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/components/header.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/product/models/product-details.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/models/product-details.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/product/models/product-form-field.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/models/product-form-field.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/product/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/services/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/orders/orders.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/orders/orders.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/products/product-new.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/product-new.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/products/products.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/products.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/login/login.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login/login.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/register/register.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register/register.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/cart/cart.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cart/cart.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/home.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-details.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-details.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/catergories.data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/catergories.data.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -172,7 +182,10 @@
       <workItem from="1661867183718" duration="25245000" />
       <workItem from="1662005882940" duration="3845000" />
       <workItem from="1662021317319" duration="23540000" />
-      <workItem from="1662131283683" duration="647000" />
+      <workItem from="1662131283683" duration="10063000" />
+      <workItem from="1662606468411" duration="2578000" />
+      <workItem from="1662622078541" duration="14292000" />
+      <workItem from="1662694201802" duration="5182000" />
     </task>
     <task id="LOCAL-00001" summary="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component">
       <created>1660455555085</created>
@@ -230,11 +243,29 @@
       <option name="project" value="LOCAL" />
       <updated>1662112232838</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Drop Zone &#10;Profile Page with orders&#10;Categories&#10;Orders in admin">
+      <created>1662132000302</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1662132000302</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
