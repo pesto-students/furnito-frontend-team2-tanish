@@ -40,7 +40,6 @@ export const register = createAsyncThunk(
     try {
       return await authService.register(rUser);
     } catch (error: any) {
-      console.log(error);
       toast.error(error?.response?.data?.message);
       return thunkAPI.rejectWithValue("Unable to register!");
     }

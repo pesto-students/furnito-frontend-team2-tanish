@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import sofa from "../../assets/images/sofa.png";
 import bed from "../../assets/images/bed.png";
 import table from "../../assets/images/table.png";
 import decor from "../../assets/images/decor.png";
 import decor_two from "../../assets/images/decor_two.png";
+import sofa from "../../assets/images/sofa.png";
 
 export default function CategoriesComponent() {
   const navigate = useNavigate();

@@ -14,7 +14,6 @@ const headers = {
 const addProduct = async (
   product: ProductFormFieldModel,
 ): Promise<any | null> => {
-  console.log(product);
   const response = await toast.promise(
     axios.post(
       `${process.env.REACT_APP_BASE_API}/product/add`,
@@ -33,7 +32,6 @@ const addProduct = async (
 const updateProduct = async (
   product: ProductFormFieldModel,
 ): Promise<any | null> => {
-  console.log(product);
   const response = await toast.promise(
     axios.post(`${process.env.REACT_APP_BASE_API}/product/update`, { product }),
     {

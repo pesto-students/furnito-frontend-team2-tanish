@@ -18,8 +18,8 @@ const mediaUploader = async (files: File[]) => {
     });
     const data = await res.json();
     media.push(data.secure_url);
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    throw new Error(error);
   }
 
   return media;

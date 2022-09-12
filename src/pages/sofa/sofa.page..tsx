@@ -51,20 +51,11 @@ export default function SofaPage() {
                 </div>
               </div>
               <div className="flex flex-col bottom-8 left-8 space-y-4 absolute opacity-0 group-hover:opacity-100 transition duration-500">
-                <button
-                  type="button"
-                  onClick={() => console.log("Add icon clicked")}
-                >
+                <button type="button">
                   <AiFillPlusCircle className="text-2xl text-gray-600" />
                 </button>
-                <button
-                  type="button"
-                  onClick={() => console.log("View icon clicked")}
-                >
-                  <AiFillEye
-                    className="text-2xl text-gray-600"
-                    onClick={() => console.log("Add icon clicked")}
-                  />
+                <button type="button">
+                  <AiFillEye className="text-2xl text-gray-600" />
                 </button>
               </div>
             </div>

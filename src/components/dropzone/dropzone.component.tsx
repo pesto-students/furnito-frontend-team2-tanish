@@ -75,7 +75,6 @@ function Dropzone(props: any) {
         uploadedFiles.push(file.data.secure_url);
       });
       setUploadedFiles(uploadedFiles);
-      console.log(uploadedFiles);
       // eslint-disable-next-line react/destructuring-assignment
       props.getImageUrl(uploadedFiles);
     });
@@ -137,7 +136,9 @@ function Dropzone(props: any) {
           </div>
         </div>
       ) : (
+        // eslint-disable-next-line react/jsx-props-no-spreading
         <div style={dropzone} {...getRootProps()}>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <input {...getInputProps()} />
           <p>Drag and drop some files here, or click to select files</p>
         </div>

@@ -66,11 +66,10 @@ function CustomersPage() {
     authService
       .fetchCustomers(paginatedSortModel)
       .then((res: any) => {
-        console.log(res.users);
         setUsers((prevState) => [...prevState, ...res.users]);
       })
       .catch((err: any) => {
-        console.log(err);
+        throw new Error(err);
       });
   }, []);
 
