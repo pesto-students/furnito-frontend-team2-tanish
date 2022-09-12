@@ -6,11 +6,11 @@ import HomePage from "../pages/home/home.page";
 import CartPage from "../pages/cart/cart.page";
 import RegisterPage from "../pages/auth/register/register.page";
 import LoginPage from "../pages/auth/login/login.page";
-import CheckoutPage from "../pages/checkout/checkout.page";
 import AdminDashboard from "../pages/admin/admin.dashboard";
 import ProductDetailsPage from "../pages/product-details/product-details.page";
 import ProfilePage from "../pages/profile/profile.page";
 import SofaPage from "../pages/sofa/sofa.page.";
+import CheckoutPage from "../pages/checkout.tsx/checkout.page";
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
           element={<PrivateRouteComponent page={<ProfilePage />} />}
         />
         <Route
-          path="/categories/sofas"
+          path="/categories/sofa"
           element={<PrivateRouteComponent page={<SofaPage />} />}
         />
         <Route

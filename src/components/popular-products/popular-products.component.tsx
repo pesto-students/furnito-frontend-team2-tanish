@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import uuid from "react-uuid";
 import SingleProductComponent from "../product/product.component";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux/hooks";
 import {
@@ -24,7 +25,7 @@ function PopularProducts() {
         </div>
         <div className="flex flex-wrap">
           {products?.map((product) => (
-            <SingleProductComponent key={product.name} product={product} />
+            <SingleProductComponent key={uuid()} product={product} />
           ))}
         </div>
       </div>

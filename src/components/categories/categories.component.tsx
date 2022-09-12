@@ -1,4 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import sofa from "../../assets/images/sofa.png";
+import bed from "../../assets/images/bed.png";
+import table from "../../assets/images/table.png";
+import decor from "../../assets/images/decor.png";
+import decor_two from "../../assets/images/decor_two.png";
 
 export default function CategoriesComponent() {
   const navigate = useNavigate();
@@ -16,11 +21,11 @@ export default function CategoriesComponent() {
               <div className="relative group flex justify-center items-center h-full w-full">
                 <img
                   className="object-center object-cover h-full w-full"
-                  src="https://i.ibb.co/ThPFmzv/omid-armin-m-VSb6-PFk-VXw-unsplash-1-1.png"
-                  alt="girl"
+                  src={sofa}
+                  alt="sofa"
                 />
                 <button
-                  onClick={() => navigate("/categories/sofas")}
+                  onClick={() => navigate("/categories/sofa")}
                   type="button"
                   className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
                 >
@@ -32,7 +37,7 @@ export default function CategoriesComponent() {
                 <div className="relative group flex justify-center items-center h-full w-full">
                   <img
                     className="object-center object-cover h-full w-full"
-                    src="https://i.ibb.co/SXZvYHs/irene-kredenets-DDqx-X0-7v-KE-unsplash-1.png"
+                    src={bed}
                     alt="shoe"
                   />
                   <button
@@ -46,8 +51,8 @@ export default function CategoriesComponent() {
                 <div className="relative group flex justify-center items-center h-full w-full">
                   <img
                     className="object-center object-cover h-full w-full"
-                    src="https://i.ibb.co/Hd1pVxW/louis-mornaud-Ju-6-TPKXd-Bs-unsplash-1-2.png"
-                    alt="watch"
+                    src={table}
+                    alt="table"
                   />
                   <button
                     type="button"
@@ -61,33 +66,33 @@ export default function CategoriesComponent() {
               <div className="relative group justify-center items-center h-full w-full hidden lg:flex">
                 <img
                   className="object-center object-cover h-full w-full"
-                  src="https://i.ibb.co/PTtRBLL/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-1.png"
-                  alt="girl"
+                  src={decor}
+                  alt="decor"
                 />
                 <button
                   type="button"
                   className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
                 >
-                  Chair
+                  Decor
                 </button>
                 <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
               </div>
               <div className="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
                 <img
                   className="object-center object-cover h-full w-full hidden md:block"
-                  src="https://i.ibb.co/6FjW19n/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2.png"
+                  src={decor_two}
                   alt="girl"
                 />
                 <img
                   className="object-center object-cover h-full w-full md:hidden"
-                  src="https://i.ibb.co/sQgHwHn/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-1.png"
+                  src={decor_two}
                   alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
                 />
                 <button
                   type="button"
                   className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
                 >
-                  Women
+                  Decor
                 </button>
                 <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
               </div>
@@ -95,19 +100,19 @@ export default function CategoriesComponent() {
             <div className="relative group hidden md:flex justify-center items-center h-full w-full mt-4 md:mt-8 lg:hidden">
               <img
                 className="object-center object-cover h-full w-full hidden md:block"
-                src="https://i.ibb.co/6FjW19n/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2.png"
+                src={decor_two}
                 alt="girl"
               />
               <img
                 className="object-center object-cover h-full w-full sm:hidden"
-                src="https://i.ibb.co/sQgHwHn/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-1.png"
+                src={decor_two}
                 alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
               />
               <button
                 type="button"
                 className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
               >
-                Women
+                Decor
               </button>
               <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
             </div>

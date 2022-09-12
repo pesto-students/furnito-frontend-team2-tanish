@@ -16,6 +16,7 @@ export interface ProductFormFieldModel {
   numberOfReviews: number;
   ratings: number;
   reviews: Array<Review>;
+  user: string;
 }
 
 export interface ProductDocument extends ProductFormFieldModel {

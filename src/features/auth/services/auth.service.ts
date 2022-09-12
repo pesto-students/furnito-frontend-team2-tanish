@@ -8,6 +8,13 @@ import { LoginUser } from "../models/login-user";
 import { NewUser } from "../models/new-user";
 import { PaginatedSortModel } from "../../product/models/paginated-sort-model";
 
+const storedJwt: string | null = localStorage.getItem("jwt");
+const jwtToken: Jwt = storedJwt ? JSON.parse(storedJwt) : null;
+
+const headers = {
+  headers: { Authorization: `Bearer ${jwtToken?.token}` },
+};
+
 const register = async (newUser: NewUser): Promise<DisplayUser | null> => {
   const response = await toast.promise(
     axios.post(`${process.env.REACT_APP_BASE_API}/auth/register`, newUser),
@@ -70,6 +77,7 @@ const fetchCustomers = async (
   const response = await toast.promise(
     axios.get(`${process.env.REACT_APP_BASE_API}/user/get`, {
       params: paginatedSortData,
+      ...headers,
     }),
     {
       pending: "Loading users...",

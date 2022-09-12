@@ -2,25 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/carousel/carousel.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sofa/sofa.page..tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/Sofa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/bed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/decor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/decor_two.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sofa_main.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sofa_main_sm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sofa_product.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/table.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/admin/admin-navbar.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/card-stats.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/checkout.tsx/address.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/checkout.tsx/checkout.page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/checkout.tsx/payment.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/checkout.tsx/review.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product/product.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/product.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/components/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/components/header.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/models/product-details.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/models/product-details.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/carousel/carousel.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/carousel/carousel.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/sidebar.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/sidebar.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/popular-products/popular-products.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/popular-products/popular-products.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/order/services/model/orders.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/order/services/model/orders.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/order/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/order/services/order.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/product/models/paginated-sort-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/models/paginated-sort-model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/product/models/product-form-field.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/models/product-form-field.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/product/product-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/product-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/product/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/services/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/admin.dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/admin.dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/dashboard/dashboard.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/dashboard/dashboard.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/orders/orders.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/orders/orders.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/products/product-new.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/product-new.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/products/products.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/products.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cart/cart.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cart/cart.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkout/checkout.page.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-details.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-details.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/catergories.data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/catergories.data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/profile.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sofa/sofa.page..tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sofa/sofa.page..tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,9 +137,9 @@
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\shared" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\shared\utils" />
-      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\svg" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\pages\auth\register" />
     </key>
@@ -185,7 +208,11 @@
       <workItem from="1662131283683" duration="10063000" />
       <workItem from="1662606468411" duration="2578000" />
       <workItem from="1662622078541" duration="14292000" />
-      <workItem from="1662694201802" duration="5182000" />
+      <workItem from="1662694201802" duration="5676000" />
+      <workItem from="1662713176186" duration="10132000" />
+      <workItem from="1662775114395" duration="63653000" />
+      <workItem from="1662948305853" duration="11678000" />
+      <workItem from="1662977753158" duration="10357000" />
     </task>
     <task id="LOCAL-00001" summary="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component">
       <created>1660455555085</created>
@@ -250,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662132000302</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Product Details Page&#10;1. Carousel Added for product details&#10;2. Review component design">
+      <created>1662699990172</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662699990172</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,6 +321,7 @@
     <MESSAGE value="URL update" />
     <MESSAGE value="Implemented toastify on the every API call&#10;Implemented Stripe" />
     <MESSAGE value="Drop Zone &#10;Profile Page with orders&#10;Categories&#10;Orders in admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Drop Zone &#10;Profile Page with orders&#10;Categories&#10;Orders in admin" />
+    <MESSAGE value="Product Details Page&#10;1. Carousel Added for product details&#10;2. Review component design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Product Details Page&#10;1. Carousel Added for product details&#10;2. Review component design" />
   </component>
 </project>

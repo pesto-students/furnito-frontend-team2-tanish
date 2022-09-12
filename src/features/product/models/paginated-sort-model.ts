@@ -3,4 +3,5 @@ export interface PaginatedSortModel {
   limit: number;
   sortBy: string;
   sortOrder: "asc" | "desc";
+  name?: string;
 }

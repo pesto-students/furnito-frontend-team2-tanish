@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import { BsFacebook, BsWhatsapp, BsInstagram } from "react-icons/bs";
@@ -6,14 +6,27 @@ import Avatar from "react-avatar";
 import moment from "moment/moment";
 import FormGroup from "@mui/material/FormGroup/FormGroup";
 import { TextField } from "@mui/material";
+import uuid from "react-uuid";
+import Skeleton from "react-loading-skeleton";
 import SeoDataComponent from "../../components/layout/seo/seo-data.component";
 import HeaderComponent from "../../features/product/components/header.component";
 import FooterComponent from "../../components/layout/footer/footer.component";
 import productService from "../../features/product/services/product.service";
 import CarouselComponent from "../../components/carousel/carousel.component";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux/hooks";
+import { selectedUser } from "../../features/auth/auth-slice";
+import {
+  incrementCart,
+  decrementCart,
+} from "../../features/product/product-slice";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function ProductDetailsPage() {
+  const dispatch = useAppDispatch();
+  const scrollToReview = useRef<HTMLDivElement>(null);
+  const { user } = useAppSelector(selectedUser);
+
   const { id } = useParams();
   const [showReview, setShowReview] = useState(false);
 
@@ -37,6 +50,14 @@ function ProductDetailsPage() {
     }),
   );
 
+  const [addReview, setAddReview] = useState(
+    Object({
+      rating: 0,
+      comment: "",
+      productId: id,
+    }),
+  );
+
   useEffect(() => {
     document.title = "Product Details";
     window.scrollTo(0, 0);
@@ -52,14 +73,44 @@ function ProductDetailsPage() {
     }
   }, []);
 
-  function handleTextFieldChange() {}
-
-  function handleRatingChange(value: number | null, review: any) {
-    console.log(value, review);
+  function handleTextFieldChange(e: any) {
+    setAddReview((prev: any) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   }
 
-  function handleSubmit() {}
+  function handleRatingChange(e: any, value: number) {
+    setAddReview((prev: any) => ({
+      ...prev,
+      rating: value,
+    }));
+  }
 
+  function handleSubmit() {
+    if (user) {
+      setShowReview(true);
+      productService
+        .createProductReview(user, addReview)
+        .then((res: any) => {
+          console.log({ res });
+          setProduct((prev: any) => ({
+            ...prev,
+            numOfReviews: res.numOfReviews,
+            ratings: res.ratings,
+            reviews: res.reviews,
+          }));
+        })
+        .catch((error: any) => {
+          console.log({ error });
+        })
+        .finally(() => {
+          setShowReview(false);
+        });
+    }
+  }
+
+  // @ts-ignore
   return (
     <>
       <HeaderComponent />
@@ -74,7 +125,8 @@ function ProductDetailsPage() {
                   {/* header */}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                     <h3 className="text-3xl font-semibold">
-                      Write a review for {product.name}
+                      Write a review for{" "}
+                      {product.name || <Skeleton width={20} />}
                     </h3>
                     <button
                       type="button"
@@ -93,15 +145,15 @@ function ProductDetailsPage() {
                         name="review"
                         sx={{ paddingBottom: 2 }}
                         onChange={(event, value) =>
-                          handleRatingChange(value, "review")
+                          value && handleRatingChange(event, value)
                         }
                       />
                       <TextField
                         sx={{ paddingBottom: 2 }}
-                        name="specs"
+                        name="comment"
                         variant="outlined"
                         placeholder="Write your review"
-                        onChange={() => handleTextFieldChange()}
+                        onChange={(event) => handleTextFieldChange(event)}
                       />
                     </FormGroup>
                   </div>
@@ -131,49 +183,79 @@ function ProductDetailsPage() {
       ) : null}
       {product && (
         <section className="text-gray-600 body-font overflow-hidden">
-          <div className="container px-5 py-24 mx-auto">
-            <div className="lg:w-4/5 mx-auto flex flex-wrap">
-              {/* <img */}
-              {/*   alt={product.name} */}
-              {/*   className="max-w-full h-auto lg:w-1/2 w-fu  ll lg:h-auto object-cover object-center rounded" */}
-              {/*   src={product?.images?.length > 0 ? product?.images[0] : ""} */}
-              {/* /> */}
-              <CarouselComponent images={product?.images} />
+          <div className="container px-5 py-12 mx-auto">
+            <div className="mx-auto flex flex-wrap">
               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                  {product.name}
+                <h1 className="text-gray-900 text-3xl title-font font-medium mb-1 text-primary-200">
+                  {product.name || <Skeleton />}
                 </h1>
+                <span className="title-font font-medium text-2xl text-gray-900">
+                  ₹{product.price}
+                </span>
                 <div className="flex mb-4">
                   <span className="flex items-center">
                     <Rating
-                      value={product.ratings}
+                      value={product.ratings || <Skeleton />}
                       precision={0.5}
                       max={5}
                       readOnly
                       name="unique-rating"
                     />
-                    <span className="text-gray-600 ml-3 ">
-                      {product.numOfReviews} Reviews
-                    </span>
+                    <button
+                      type="button"
+                      className="text-gray-600 ml-3 hover:text-secondary-100"
+                      onClick={() =>
+                        scrollToReview.current?.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      {`${product.numOfReviews} Reviews` || <Skeleton />}
+                    </button>
                   </span>
                   <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                     <Link to="/" className="text-gray-500 mr-3">
-                      <BsWhatsapp />
+                      <BsWhatsapp className="hover:text-secondary-100" />
                     </Link>
                     <Link to="/" className="text-gray-500 mr-3">
-                      <BsFacebook />
+                      <BsFacebook className="hover:text-secondary-100" />
                     </Link>
                     <Link to="/" className="text-gray-500">
-                      <BsInstagram />
+                      <BsInstagram className="hover:text-secondary-100" />
                     </Link>
                   </span>
                 </div>
-                <p className="leading-relaxed">{product.description}</p>
+                <p className="leading-relaxed">
+                  {product.description || <Skeleton count={4} />}
+                </p>
                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5" />
                 <div className="flex">
-                  <span className="title-font font-medium text-2xl text-gray-900">
-                    ₹{product.price}
-                  </span>
+                  {/* Increment and decrement buttons */}
+                  <div className="flex flex-row  ">
+                    <button
+                      type="button"
+                      className="border text-gray-600 hover:text-white hover:bg-secondary-200  w-8 rounded-l cursor-pointer outline-none"
+                      onClick={() => {
+                        dispatch(decrementCart(product));
+                      }}
+                    >
+                      <span className="m-auto font-thin">−</span>
+                    </button>
+                    <input
+                      className="outline-none focus:outline-none text-center  w-10  font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
+                      name="custom-input-number"
+                    />
+                    <button
+                      type="button"
+                      className="border text-gray-600 hover:text-white hover:bg-primary-100  w-8 rounded-r cursor-pointer"
+                      onClick={() => {
+                        dispatch(incrementCart(product));
+                      }}
+                    >
+                      <span className="m-auto font-thin">+</span>
+                    </button>
+                  </div>
+
                   <button
                     onClick={() => setShowReview(true)}
                     type="button"
@@ -183,11 +265,67 @@ function ProductDetailsPage() {
                   </button>
                 </div>
               </div>
+              <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
+                {<CarouselComponent images={product?.images} /> || (
+                  <Skeleton
+                    circle
+                    height="100%"
+                    containerClassName="avatar-skeleton"
+                  />
+                )}
+              </div>
             </div>
-            <div className="mx-8 w-full flex flex-wrap bg-grey-light">
+            <div
+              className="mx-8 w-full flex flex-wrap bg-grey-light"
+              ref={scrollToReview}
+            >
               {product.reviews.length > 0 &&
                 product.reviews.map((review: any) => (
-                  <article className="w-full md:w-1/2 lg:w-1/4 shadow-md px-8 py-4 mx-8">
+                  <article
+                    key={uuid()}
+                    className="w-full md:w-1/2 lg:w-1/4 shadow-md px-8 py-4 m-8"
+                  >
+                    <div className="flex items-center mb-4 space-x-4">
+                      <Avatar
+                        color="#D1A75E"
+                        className="rounded-full w-16 h-16 text-lg"
+                        name={review?.name || <Skeleton />}
+                        size="50"
+                      />
+                      <div className="space-y-1 font-medium dark:text-gray-600">
+                        <p>
+                          {review?.name || <Skeleton />}
+                          <time
+                            dateTime="2014-08-16 19:00"
+                            className="block text-sm text-gray-500 dark:text-gray-400"
+                          >
+                            {moment(product.updatedAt).format(
+                              "MMMM Do YYYY",
+                            ) || <Skeleton />}
+                          </time>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center mb-1">
+                      <Rating
+                        value={review?.rating}
+                        precision={0.5}
+                        max={5}
+                        readOnly
+                        name="unique-rating"
+                      />
+                    </div>
+                    <p className="mb-3 font-light text-gray-500 dark:text-gray-400">
+                      {review?.comment}
+                    </p>
+                  </article>
+                ))}
+              {product.reviews.length > 0 &&
+                product.reviews.map((review: any) => (
+                  <article
+                    key={uuid()}
+                    className="w-full md:w-1/2 lg:w-1/4 shadow-md px-8 py-4 m-8"
+                  >
                     <div className="flex items-center mb-4 space-x-4">
                       <Avatar
                         color="#D1A75E"
@@ -209,7 +347,7 @@ function ProductDetailsPage() {
                     </div>
                     <div className="flex items-center mb-1">
                       <Rating
-                        value={review?.rating}
+                        value={review?.rating || <Skeleton />}
                         precision={0.5}
                         max={5}
                         readOnly
@@ -217,7 +355,7 @@ function ProductDetailsPage() {
                       />
                     </div>
                     <p className="mb-3 font-light text-gray-500 dark:text-gray-400">
-                      {review?.comment}
+                      {review?.comment || <Skeleton count={2} />}
                     </p>
                   </article>
                 ))}

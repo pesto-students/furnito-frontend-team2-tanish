@@ -5,7 +5,7 @@ import authService from "../../../features/auth/services/auth.service";
 import { PaginatedSortModel } from "../../../features/product/models/paginated-sort-model";
 
 function CustomersPage() {
-  const [data, setData] = useState([]);
+  const [users, setUsers] = useState(Array<any>());
   const paginatedSortModel: PaginatedSortModel = {
     page: 1,
     limit: 10,
@@ -66,7 +66,8 @@ function CustomersPage() {
     authService
       .fetchCustomers(paginatedSortModel)
       .then((res: any) => {
-        setData(res);
+        console.log(res.users);
+        setUsers((prevState) => [...prevState, ...res.users]);
       })
       .catch((err: any) => {
         console.log(err);
@@ -74,33 +75,27 @@ function CustomersPage() {
   }, []);
 
   return (
-    <div className="ml-auto pt-6 mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-      <div className="sticky top-0 h-16 border-b bg-white lg:py-2.5">
-        <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
-          <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
-            Customers
-          </h5>
-          <button type="button" className="w-12 h-16 -mr-2 border-r lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 my-auto"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
+    <div className="flex flex-wrap mt-4">
+      <div className="w-full mb-12 px-4 mx-8 -my-16">
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+          <div className="rounded-t mb-0 px-4 py-3 border-0">
+            <div className="flex flex-wrap items-center">
+              <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
+                <h5 className="text-2xl text-gray-600 font-medium lg:block">
+                  Users
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div className="block w-full overflow-x-auto">
+            <div className="justify-center items-center">
+              <DataTableBase
+                className="items-center w-full bg-transparent border-collapse"
+                columns={columns}
+                data={users}
               />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div className="px-6 pt-6 2xl:container">
-        <div className="justify-center items-center">
-          <DataTableBase columns={columns} data={data} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

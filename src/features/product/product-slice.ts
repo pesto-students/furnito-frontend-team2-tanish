@@ -13,7 +13,6 @@ import { OrderFormFieldModel } from "./models/order-form-field.model";
 const products: ProductFormFieldModel[] = [];
 const categories: CategoryFormFieldModel[] = [];
 const orders: OrderFormFieldModel[] = [];
-
 const paginatedSortData: PaginatedSortModel = {
   page: 1,
   limit: 10,
@@ -136,19 +135,22 @@ export const fetchProduct = createAsyncThunk(
 );
 
 // This code will be used to add/remove a product to the cart and update the cart quantity
-function modifyQtyByOne(
-  mCart: CartItem[],
-  payload: ProductDocument,
-  increment: string,
-) {
+function incrementQtyByOne(mCart: CartItem[], payload: ProductDocument) {
   const cartItem = mCart.find((item) => item._id === payload._id);
   if (cartItem) {
-    cartItem.quantity =
-      increment === "INCREMENT" ? cartItem.quantity + 1 : cartItem.quantity - 1;
+    cartItem.quantity += 1;
   } else {
     mCart.push({ ...payload, quantity: 1 });
   }
   return mCart;
+}
+
+function decrementQtyByOne(mCart: CartItem[], payload: ProductDocument) {
+  const cartItem = mCart.find((item) => item._id === payload._id);
+  if (cartItem && cartItem.quantity >= 1) {
+    cartItem.quantity -= 1;
+  }
+  return cart;
 }
 
 export const productSlice = createSlice({
@@ -169,11 +171,11 @@ export const productSlice = createSlice({
     },
     incrementCart: (state, action: PayloadAction<ProductDocument>) => {
       const State = { ...state };
-      State.cart = modifyQtyByOne(state.cart, action.payload, "INCREMENT");
+      State.cart = incrementQtyByOne(state.cart, action.payload);
     },
     decrementCart: (state, action: PayloadAction<ProductDocument>) => {
       const State = { ...state };
-      State.cart = modifyQtyByOne(state.cart, action.payload, "DECREMENT");
+      State.cart = decrementQtyByOne(state.cart, action.payload);
     },
     removeItemFromCart: (state, action: PayloadAction<string>) => {
       const State = { ...state };
@@ -281,8 +283,13 @@ export const productSlice = createSlice({
   },
 });
 
-export const { reset, resetCart, incrementCart, removeItemFromCart } =
-  productSlice.actions;
+export const {
+  reset,
+  resetCart,
+  decrementCart,
+  incrementCart,
+  removeItemFromCart,
+} = productSlice.actions;
 
 export const selectedProduct = (state: RootState) => {
   return state.product;

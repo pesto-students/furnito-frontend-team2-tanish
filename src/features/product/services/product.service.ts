@@ -14,6 +14,7 @@ const headers = {
 const addProduct = async (
   product: ProductFormFieldModel,
 ): Promise<any | null> => {
+  console.log(product);
   const response = await toast.promise(
     axios.post(
       `${process.env.REACT_APP_BASE_API}/product/add`,
@@ -32,6 +33,7 @@ const addProduct = async (
 const updateProduct = async (
   product: ProductFormFieldModel,
 ): Promise<any | null> => {
+  console.log(product);
   const response = await toast.promise(
     axios.post(`${process.env.REACT_APP_BASE_API}/product/update`, { product }),
     {
@@ -148,6 +150,20 @@ const fetchProductById = async (id: string): Promise<any> => {
   return response.data;
 };
 
+const createProductReview = async (
+  user: { name: string; id: string },
+  review: any,
+): Promise<any> => {
+  const response = await axios.post(
+    `${process.env.REACT_APP_BASE_API}/product/review/${user.id}/${user.name}`,
+    review,
+    {
+      ...headers,
+    },
+  );
+  return response.data;
+};
+
 const productService = {
   addProduct,
   updateProduct,
@@ -158,6 +174,7 @@ const productService = {
   fetchCategories,
   fetchOrders,
   fetchProductById,
+  createProductReview,
 };
 
 export default productService;

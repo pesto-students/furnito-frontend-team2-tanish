@@ -83,25 +83,35 @@ function ProductsPage() {
     return <CircularProgress sx={{ marginTop: "64px" }} color="primary" />;
 
   return (
-    <div className="ml-auto pt-6 mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-      <div className="sticky top-0 h-16 border-b bg-white lg:py-2.5">
-        <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
-          <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
-            Products
-          </h5>
-          <button
-            onClick={() => navigate("/admin/products/new")}
-            type="button"
-            className="text-white bg-primary-400 hover:bg-primary-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-400"
-          >
-            <AiOutlinePlusCircle className="w-4 h-4 mr-2" />
-            Add Product
-          </button>
-        </div>
-      </div>
-      <div className="px-6 pt-6 2xl:container">
-        <div className="justify-center items-center">
-          <DataTableBase columns={columns} data={data} />
+    <div className="flex flex-wrap mt-4">
+      <div className="w-full mb-12 px-4 mx-8 -my-16">
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+          <div className="rounded-t mb-0 px-4 py-3 border-0">
+            <div className="flex flex-wrap items-center">
+              <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
+                <h5 className="text-2xl text-gray-600 font-medium lg:block">
+                  Products
+                </h5>
+                <button
+                  onClick={() => navigate("/admin/products/new")}
+                  type="button"
+                  className="text-white bg-primary-400 hover:bg-primary-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-400"
+                >
+                  <AiOutlinePlusCircle className="w-4 h-4 mr-2" />
+                  Add Product
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="block w-full overflow-x-auto">
+            <div className="justify-center items-center">
+              <DataTableBase
+                className="items-center w-full bg-transparent border-collapse"
+                columns={columns}
+                data={data}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

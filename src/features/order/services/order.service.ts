@@ -1,10 +1,24 @@
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Orders } from "./model/orders.model";
+import { Jwt } from "../../auth/models/jwt.model";
+import { PaginatedSortModel } from "../../product/models/paginated-sort-model";
 
-const getOrdersByUser = async (userId: string): Promise<Orders | null> => {
+const storedJwt: string | null = localStorage.getItem("jwt");
+const jwt: Jwt = storedJwt ? JSON.parse(storedJwt) : null;
+
+const headers = {
+  headers: { Authorization: `Bearer ${jwt?.token}` },
+};
+
+const getOrdersByUser = async (
+  paginatedSortData: PaginatedSortModel,
+): Promise<any | null> => {
   const response = await toast.promise(
-    axios.get(`${process.env.REACT_APP_BASE_API}/order/:${userId}`),
+    axios.get(`${process.env.REACT_APP_BASE_API}/order/get`, {
+      ...headers,
+      params: paginatedSortData,
+    }),
     {
       pending: "Fetching Orders...",
       success: "Order fetched successfully",
