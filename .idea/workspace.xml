@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" />
+    <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="logs removed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dropzone/dropzone.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dropzone/dropzone.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/components/payment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/components/payment.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/services/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/profile.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sofa/sofa.page..tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sofa/sofa.page..tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/mediaUploader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mediaUploader.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +183,8 @@
       <workItem from="1662775114395" duration="63653000" />
       <workItem from="1662948305853" duration="11678000" />
       <workItem from="1662977753158" duration="11184000" />
-      <workItem from="1662998055015" duration="836000" />
+      <workItem from="1662998055015" duration="1837000" />
+      <workItem from="1662999927925" duration="352000" />
     </task>
     <task id="LOCAL-00001" summary="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component">
       <created>1660455555085</created>
@@ -273,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662995809862</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="logs removed">
+      <created>1662999074941</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662999074941</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

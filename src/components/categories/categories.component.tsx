@@ -3,7 +3,6 @@ import bed from "../../assets/images/bed.png";
 import table from "../../assets/images/table.png";
 import decor from "../../assets/images/decor.png";
 import decor_two from "../../assets/images/decor_two.png";
-import sofa from "../../assets/images/sofa.png";
 
 export default function CategoriesComponent() {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ export default function CategoriesComponent() {
               <div className="relative group flex justify-center items-center h-full w-full">
                 <img
                   className="object-center object-cover h-full w-full"
-                  src={sofa}
+                  src={decor}
                   alt="sofa"
                 />
                 <button
