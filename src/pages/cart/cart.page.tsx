@@ -8,10 +8,12 @@ import {
   incrementCart,
   removeItemFromCart,
   selectedProduct,
+  updateOrder,
 } from "../../features/product/product-slice";
 import FooterComponent from "../../components/layout/footer/footer.component";
 import EmptyCartPage from "../empty-cart/empty-cart.page";
 import "react-loading-skeleton/dist/skeleton.css";
+import { OrderItem } from "../../features/order/services/model/orders.model";
 
 function CartPage() {
   useEffect(() => {
@@ -19,7 +21,7 @@ function CartPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const { cart } = useAppSelector(selectedProduct);
+  const { cart, order } = useAppSelector(selectedProduct);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -28,21 +30,43 @@ function CartPage() {
   };
 
   // calculate the total price of the cart
-  const subTotalPrice = cart.reduce((acc, item) => {
+  const itemsPrice = cart.reduce((acc, item) => {
     return acc + item.quantity * item.price;
   }, 0);
 
   // calculate gst tax amount of 18% of subtotal
-  const gstTax = subTotalPrice * 0.18;
+  const taxPrice = itemsPrice * 0.18;
 
   // checkout.tsx charges
-  const shippingCharges = 1500;
+  const shippingPrice = 1500;
 
   // calculate the total price of the cart including gst tax
-  const totalPrice = subTotalPrice + shippingCharges + gstTax;
+  const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
   const checkout = () => {
-    // add order details to order object
+    const orderedItems: Array<OrderItem> = cart.map((item) => {
+      return {
+        product: item._id,
+        quantity: item.quantity,
+        price: item.price,
+        name: item.name,
+        image: String(item.images[0]),
+        _id: item._id,
+      };
+    });
+    if (order) {
+      // order.itemsPrice = itemsPrice;
+      dispatch(
+        updateOrder({
+          ...order,
+          orderedItems,
+          totalPrice,
+          shippingPrice,
+          taxPrice,
+          itemsPrice,
+        }),
+      );
+    }
     navigate("/checkout");
   };
 
@@ -160,15 +184,15 @@ function CartPage() {
                   <ul className="mb-5">
                     <li className="flex justify-between text-gray-600  mb-1">
                       <span>Subtotal:</span>
-                      <span>₹{subTotalPrice}</span>
+                      <span>₹{itemsPrice}</span>
                     </li>
                     <li className="flex justify-between text-gray-600  mb-1">
                       <span>Shipping:</span>
-                      <span>₹{shippingCharges}</span>
+                      <span>₹{shippingPrice}</span>
                     </li>
                     <li className="flex justify-between text-gray-600  mb-1">
                       <span>GST:</span>
-                      <span>₹{gstTax}</span>
+                      <span>₹{taxPrice}</span>
                     </li>
                     <li className="text-lg font-bold border-t flex justify-between mt-12 pt-3">
                       <span>Total price:</span>

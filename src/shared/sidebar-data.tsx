@@ -3,7 +3,7 @@ import {
   RiShoppingBag2Fill,
   RiStarSFill,
 } from "react-icons/ri";
-import { FaList, FaUsers, FaCompass } from "react-icons/fa";
+import { FaUsers, FaCompass } from "react-icons/fa";
 
 const SidebarData = [
   {
@@ -11,14 +11,6 @@ const SidebarData = [
     title: "Dashboard",
     path: "/admin/dashboard",
     icon: <RiDashboardFill />,
-    class:
-      "px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:text-gray-900 hover:bg-gray-100",
-  },
-  {
-    id: 2,
-    title: "Categories",
-    path: "/admin/categories",
-    icon: <FaList />,
     class:
       "px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:text-gray-900 hover:bg-gray-100",
   },

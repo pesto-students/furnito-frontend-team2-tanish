@@ -11,6 +11,8 @@ import ProductDetailsPage from "../pages/product-details/product-details.page";
 import ProfilePage from "../pages/profile/profile.page";
 import SofaPage from "../pages/sofa/sofa.page.";
 import CheckoutPage from "../pages/checkout.tsx/checkout.page";
+import PaymentComponent from "../features/product/components/payment.component";
+// import PaymentComponent from "../features/product/components/payment.component";
 
 function App() {
   return (
@@ -30,6 +32,10 @@ function App() {
           element={<PrivateRouteComponent page={<CartPage />} />}
         />
         <Route
+          path="checkout/payment"
+          element={<PrivateRouteComponent page={<PaymentComponent />} />}
+        />
+        <Route
           path="/checkout"
           element={<PrivateRouteComponent page={<CheckoutPage />} />}
         />
@@ -38,7 +44,7 @@ function App() {
           element={<PrivateRouteComponent page={<ProfilePage />} />}
         />
         <Route
-          path="/categories/sofa"
+          path="/categories/:name"
           element={<PrivateRouteComponent page={<SofaPage />} />}
         />
         <Route

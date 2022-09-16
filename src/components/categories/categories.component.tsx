@@ -10,7 +10,7 @@ export default function CategoriesComponent() {
     <div className="pb-16">
       <div className="flex justify-center items-center">
         <div className="2xl:mx-auto 2xl:container py-12 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
-          <div className="flex flex-col jusitfy-center items-center space-y-10">
+          <div className="flex flex-col justify-center items-center space-y-10">
             <div className="flex flex-col justify-center items-center space-y-2">
               <h1 className="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800">
                 Shop By Category
@@ -40,6 +40,7 @@ export default function CategoriesComponent() {
                     alt="shoe"
                   />
                   <button
+                    onClick={() => navigate("/categories/bed")}
                     type="button"
                     className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
                   >
@@ -54,6 +55,7 @@ export default function CategoriesComponent() {
                     alt="table"
                   />
                   <button
+                    onClick={() => navigate("/categories/table")}
                     type="button"
                     className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
                   >
@@ -69,6 +71,7 @@ export default function CategoriesComponent() {
                   alt="decor"
                 />
                 <button
+                  onClick={() => navigate("/categories/decor")}
                   type="button"
                   className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
                 >

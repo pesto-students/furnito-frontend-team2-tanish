@@ -8,11 +8,10 @@ import { PaginatedSortModel } from "./models/paginated-sort-model";
 import { CartItem } from "./models/cart-item.model";
 import productService from "./services/product.service";
 import { CategoryFormFieldModel } from "./models/catetogy-form-field.model";
-import { OrderFormFieldModel } from "./models/order-form-field.model";
+import { Order } from "../order/services/model/orders.model";
 
 const products: ProductFormFieldModel[] = [];
 const categories: CategoryFormFieldModel[] = [];
-const orders: OrderFormFieldModel[] = [];
 const paginatedSortData: PaginatedSortModel = {
   page: 1,
   limit: 10,
@@ -30,7 +29,7 @@ interface AsyncState {
 interface ProductState extends AsyncState {
   products?: ProductFormFieldModel[];
   categories?: CategoryFormFieldModel[];
-  orders?: OrderFormFieldModel[];
+  order?: Order;
   paginatedSortData?: PaginatedSortModel | any;
   cart: CartItem[];
 }
@@ -38,7 +37,30 @@ interface ProductState extends AsyncState {
 const initialState: ProductState = {
   products,
   categories,
-  orders,
+  order: {
+    _id: "",
+    shippingInfo: {
+      name: "Vasu Vallabh",
+      address: "B-5/7, 2nd Floor, Sector 12",
+      city: "Bhubaneswar",
+      state: "Odisha",
+      country: "India",
+      pinCode: "751001",
+      phoneNo: "7978120295",
+    },
+    orderedItems: [],
+    user: "",
+    paymentInfo: {
+      id: "",
+      status: "pending",
+    },
+    itemsPrice: 0,
+    taxPrice: 0,
+    shippingPrice: 0,
+    totalPrice: 0,
+    orderStatus: "",
+    paidAt: "",
+  },
   cart,
   paginatedSortData,
   isLoading: false,
@@ -182,6 +204,13 @@ export const productSlice = createSlice({
       State.cart = State.cart.filter((item) => item._id !== action.payload);
       return State; // return the new state
     },
+
+    updateOrder: (state, action: PayloadAction<Order>) => {
+      console.log("action.payload", action.payload);
+      const State = { ...state };
+      State.order = action.payload;
+      return State;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -260,25 +289,6 @@ export const productSlice = createSlice({
         State.isLoading = false;
         State.isError = true;
         return State;
-      })
-
-      // Fetch Orders
-      .addCase(fetchOrders.pending, (state) => {
-        const State = { ...state };
-        State.isLoading = true;
-      })
-      .addCase(fetchOrders.fulfilled, (state, action) => {
-        const State = { ...state };
-        State.isLoading = false;
-        State.orders = action.payload;
-        State.isSuccess = true;
-        return State;
-      })
-      .addCase(fetchOrders.rejected, (state) => {
-        const State = { ...state };
-        State.isLoading = false;
-        State.isError = true;
-        return State;
       });
   },
 });
@@ -289,6 +299,7 @@ export const {
   decrementCart,
   incrementCart,
   removeItemFromCart,
+  updateOrder,
 } = productSlice.actions;
 
 export const selectedProduct = (state: RootState) => {

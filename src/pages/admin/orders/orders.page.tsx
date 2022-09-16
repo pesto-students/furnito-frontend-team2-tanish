@@ -85,7 +85,7 @@ function OrdersPage() {
   ];
 
   useEffect(() => {
-    document.title = "Customers";
+    document.title = "Orders";
     productService
       .fetchOrders(paginatedSortModel)
       .then((res: any) => {

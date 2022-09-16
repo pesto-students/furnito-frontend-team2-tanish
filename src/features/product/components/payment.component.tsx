@@ -10,29 +10,19 @@ import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 import { resetCart, selectedProduct } from "../product-slice";
-import { selectedUser } from "../../auth/auth-slice";
+import FooterComponent from "../../../components/layout/footer/footer.component";
+import HeaderComponent from "./header.component";
 
 function PaymentComponent() {
   const navigate = useNavigate();
-  const { cart } = useAppSelector(selectedProduct);
-  const { user } = useAppSelector(selectedUser);
-  let userId = "";
-  if (user) {
-    userId = user.id;
-  }
+  const { order } = useAppSelector(selectedProduct);
 
   const dispatch = useAppDispatch();
-
   const [isProcessing, setIsProcessing] = React.useState(false);
   const [paymentStatus, setPaymentStatus] = React.useState("");
 
-  // calculate the total price of the cart
-  const subTotalPrice = cart.reduce((acc, item) => {
-    return acc + item.quantity * item.price;
-  }, 0);
-
   // calculate the total price of the cart including gst tax
-  const total = subTotalPrice;
+  const total = order?.totalPrice;
 
   const stripe = useStripe();
   const elements = useElements();
@@ -58,20 +48,16 @@ function PaymentComponent() {
     setIsProcessing(true);
 
     const createOrder = () => {
-      const order = {
-        userId,
-        cart,
-        total,
-      };
       // cart items and user details to be sent to the server
       const result = axios.post(`${process.env.REACT_APP_BASE_API}/order/add`, {
         ...order,
       });
+      console.log(result);
     };
 
     try {
       const res = await axios.post(`${process.env.REACT_APP_BASE_API}/stripe`, {
-        cart,
+        total,
       });
 
       const { client_secret: clientSecret } = res.data;
@@ -86,6 +72,7 @@ function PaymentComponent() {
         setPaymentStatus("Payment failed!");
       } else {
         setPaymentStatus(paymentIntent.status);
+        console.log(paymentIntent);
         // create order and clear the cart
         createOrder();
         dispatch(resetCart());
@@ -100,21 +87,35 @@ function PaymentComponent() {
   };
 
   return (
-    <div className="flex flex-col mx-[35rem] my-20 px-8 py-4 font-barlow rounded overflow-hidden shadow-lg">
-      <form onSubmit={handleSubmit} id="payment-form">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className="text-dark-shades-100">Place order</label>
-        <CardElement className="my-3" id="card-element" />
-        {!isProcessing && (
-          <button
-            type="submit"
-            className="bg-secondary-200 w-full text-white font-bold py-2 px-4 rounded hover:bg-secondary-300"
-          >
-            Pay
-          </button>
-        )}
-        {isProcessing && <div>Processing...</div>}
-        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>}
+    <div className="flex flex-col my-20 px-8 py-4 rounded overflow-hidden shadow-lg">
+      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+        Payment
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        id="payment-form"
+        className="space-y-4 md:space-y-6"
+      >
+        <div className="flex flex-col mt-4">
+          <div className="mt-2">
+            <CardElement className="mb-6" id="card-element" />
+            {!isProcessing && (
+              <div className="mt-2 flex flex-row">
+                <button
+                  type="submit"
+                  className="w-full text-white bg-primary-200 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  disabled={!stripe}
+                >
+                  Pay{`  ₹${total}`}
+                </button>
+              </div>
+            )}
+            {isProcessing && <div>Processing...</div>}
+            {!isProcessing && paymentStatus && (
+              <div>Status: {paymentStatus}</div>
+            )}
+          </div>
+        </div>
       </form>
     </div>
   );
@@ -125,9 +126,13 @@ function PaymentGateway() {
     "pk_test_51LYNhySEzpZRx7cHFNkLRmBBgt8MdF9E2KKqPiuJfmqDWWbM8JRTji7plxJ4YMf34yxr5biE9iyTL4jZJEjtveUg00LhB6q7Vo",
   );
   return (
-    <Elements stripe={stripePromise}>
-      <PaymentComponent />
-    </Elements>
+    <>
+      <HeaderComponent />
+      <Elements stripe={stripePromise}>
+        <PaymentComponent />
+      </Elements>
+      <FooterComponent />
+    </>
   );
 }
 

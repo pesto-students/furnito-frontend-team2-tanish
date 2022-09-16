@@ -104,6 +104,23 @@ const fetchProducts = async (
   return response.data.products;
 };
 
+const fetchProductsByCategory = async (
+  paginatedSortData: PaginatedSortModel,
+): Promise<any> => {
+  const response = await toast.promise(
+    axios.get(`${process.env.REACT_APP_BASE_API}/product/get`, {
+      ...headers,
+      params: paginatedSortData,
+    }),
+    {
+      pending: "Loading sofas...",
+      success: "Sofas loaded successfully",
+      error: "Unable to load sofas",
+    },
+  );
+  return response.data.products;
+};
+
 const fetchCategories = async (
   paginatedSortData: PaginatedSortModel,
 ): Promise<any> => {
@@ -133,6 +150,20 @@ const fetchOrders = async (
       pending: "Loading orders...",
       success: "Orders loaded successfully",
       error: "Unable to load orders",
+    },
+  );
+  return response.data;
+};
+
+const allCount = async (): Promise<any> => {
+  const response = await toast.promise(
+    axios.get(`${process.env.REACT_APP_BASE_API}/product/count`, {
+      ...headers,
+    }),
+    {
+      pending: "Loading Admin Analytics...",
+      success: "Analytics loaded successfully",
+      error: "Unable to load Analytics",
     },
   );
   return response.data;
@@ -173,6 +204,8 @@ const productService = {
   fetchOrders,
   fetchProductById,
   createProductReview,
+  fetchProductsByCategory,
+  allCount,
 };
 
 export default productService;

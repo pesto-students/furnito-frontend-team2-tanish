@@ -10,7 +10,7 @@ function SingleProductComponent({ product }: { product: any }) {
   return (
     <div className="flex flex-col items-center justify-center max-w-sm mx-auto ml-12 mr-12 mb-24 ">
       <Link
-        to={`product/${product._id}`}
+        to={`/product/${product._id}`}
         className="w-full h-64  bg-center bg-cover rounded-lg "
       >
         <img

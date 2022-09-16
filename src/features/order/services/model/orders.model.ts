@@ -1,9 +1,11 @@
 export type Orders = Order[];
 
 export interface ShippingInfo {
+  name: string;
   address: string;
   city: string;
   country: string;
+  state: string;
   pinCode: string;
   phoneNo: string;
 }
