@@ -13,7 +13,7 @@ function PrivateRouteComponent({ page }: { page: JSX.Element }) {
   useEffect(() => {
     if (!jwt || !jwt?.token) return;
     dispatch(verifyJwt(jwt.token));
-  }, [jwt, isSuccess, dispatch]);
+  }, [jwt, isSuccess]);
 
   return isAuthenticated ? page : <Navigate replace to="/login" />;
 }

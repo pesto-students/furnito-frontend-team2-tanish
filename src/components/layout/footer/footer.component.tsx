@@ -21,13 +21,13 @@ function footerComponent() {
               </Link>
             </li>
             <li>
-              <Link to="/auth" className="hover:text-secondary-100">
+              <Link to="/profile" className="hover:text-secondary-100">
                 Profile
               </Link>
             </li>
             <li>
-              <Link to="/cart" className="hover:text-secondary-100">
-                Cart
+              <Link to="/admin" className="hover:text-secondary-100">
+                Admin
               </Link>
             </li>
             <li>

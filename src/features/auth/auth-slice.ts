@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import type { RootState } from "../../app/store";
 import authService from "./services/auth.service";
 import { DisplayUser } from "./models/display-user.model";
 import { Jwt } from "./models/jwt.model";
 import { NewUser } from "./models/new-user";
 import { LoginUser } from "./models/login-user";
+import { PaginatedSortModel } from "../product/models/paginated-sort-model";
 
 const storedUser: string | null = localStorage.getItem("user");
 const user: DisplayUser | null = storedUser ? JSON.parse(storedUser) : null;
@@ -37,7 +39,8 @@ export const register = createAsyncThunk(
   async (rUser: NewUser, thunkAPI) => {
     try {
       return await authService.register(rUser);
-    } catch (error) {
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message);
       return thunkAPI.rejectWithValue("Unable to register!");
     }
   },
@@ -65,6 +68,17 @@ export const verifyJwt = createAsyncThunk(
       return await authService.verifyJwt(vJWT);
     } catch (error) {
       return thunkAPI.rejectWithValue("Unable to verify");
+    }
+  },
+);
+
+export const customers = createAsyncThunk(
+  "user/get",
+  async (cUsers: PaginatedSortModel, thunkAPI) => {
+    try {
+      return await authService.fetchCustomers(cUsers);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to get customers");
     }
   },
 );

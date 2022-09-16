@@ -1,111 +1,60 @@
-import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import HeaderComponent from "../components/layout/header/header.component";
-import FooterComponent from "../components/layout/footer/footer.component";
-
-import ProfileComponent from "../pages/profile/profile.component";
-
-// lazy loading routes
-const Home = lazy(() => import("../pages/home/home.component"));
-const Register = lazy(
-  () => import("../pages/auth/register/register.component"),
-);
-const Login = lazy(() => import("../pages/auth/login/login.component"));
-const Products = lazy(() => import("../pages/products/products.component"));
-const ProductDetails = lazy(
-  () => import("../pages/product-details/product-details.component"),
-);
-const Cart = lazy(() => import("../pages/cart/cart.component"));
-const FourOhFour = lazy(() => import("../pages/404/four-oh-four.component"));
-const Loading = lazy(() => import("../components/loading/loading.component"));
-const PrivateRoute = lazy(
-  () => import("../components/private-route/private-route.component"),
-);
+import PrivateRouteComponent from "../components/private-route/private-route.component";
+import HomePage from "../pages/home/home.page";
+import CartPage from "../pages/cart/cart.page";
+import RegisterPage from "../pages/auth/register/register.page";
+import LoginPage from "../pages/auth/login/login.page";
+import AdminDashboard from "../pages/admin/admin.dashboard";
+import ProductDetailsPage from "../pages/product-details/product-details.page";
+import ProfilePage from "../pages/profile/profile.page";
+import SofaPage from "../pages/sofa/sofa.page.";
+import CheckoutPage from "../pages/checkout.tsx/checkout.page";
+import PaymentComponent from "../features/product/components/payment.component";
+// import PaymentComponent from "../features/product/components/payment.component";
 
 function App() {
   return (
-    <div className="flex flex-col ">
-      <ToastContainer autoClose={3000} />
-      <HeaderComponent />
+    <div className="flex flex-col">
+      <ToastContainer autoClose={1000} position="bottom-right" draggable />
       <Routes>
         <Route
-          path="/*"
-          element={
-            <Suspense fallback={<Loading />}>
-              <FourOhFour />
-            </Suspense>
-          }
-        />
-        {/* User Routes */}
-        <Route
           path="/"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Home />
-            </Suspense>
-          }
+          element={<PrivateRouteComponent page={<HomePage />} />}
         />
         <Route
-          path="/home"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route path="/home" element={<Home />} />
-        <Route
-          path="/register"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Register />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Login />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Suspense fallback={<Loading />}>
-              <PrivateRoute page={<ProfileComponent />} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Products />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/product"
-          element={
-            <Suspense fallback={<Loading />}>
-              <ProductDetails />
-            </Suspense>
-          }
+          path="/product/:id"
+          element={<PrivateRouteComponent page={<ProductDetailsPage />} />}
         />
         <Route
           path="/cart"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Cart />
-            </Suspense>
-          }
+          element={<PrivateRouteComponent page={<CartPage />} />}
         />
+        <Route
+          path="checkout/payment"
+          element={<PrivateRouteComponent page={<PaymentComponent />} />}
+        />
+        <Route
+          path="/checkout"
+          element={<PrivateRouteComponent page={<CheckoutPage />} />}
+        />
+        <Route
+          path="/profile"
+          element={<PrivateRouteComponent page={<ProfilePage />} />}
+        />
+        <Route
+          path="/categories/:name"
+          element={<PrivateRouteComponent page={<SofaPage />} />}
+        />
+        <Route
+          path="/admin*"
+          element={<PrivateRouteComponent page={<AdminDashboard />} />}
+        />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <FooterComponent />
     </div>
   );
 }
