@@ -11,6 +11,7 @@ import ProductNewPage from "./products/product-new.page";
 import CategoriesPage from "./cateogories/categories.page";
 import CategoryNewPage from "./cateogories/category-new.page";
 import AdminNavbarComponent from "./admin-navbar.component";
+import FooterComponent from "../../components/layout/footer/footer.component";
 
 function AdminDashboard() {
   return (
@@ -30,6 +31,7 @@ function AdminDashboard() {
           <Route path="/reviews" element={<ReviewsComponent />} />
           <Route path="/*" element={<FourOhFourPage />} />
         </Routes>
+        <FooterComponent />
       </div>
     </>
   );

@@ -26,8 +26,8 @@ function footerComponent() {
               </Link>
             </li>
             <li>
-              <Link to="/admin" className="hover:text-secondary-100">
-                Admin
+              <Link to="/cart" className="hover:text-secondary-100">
+                Cart
               </Link>
             </li>
             <li>

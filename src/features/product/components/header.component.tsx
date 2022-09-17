@@ -1,7 +1,10 @@
-import { Badge, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import { BsFillCartCheckFill } from "react-icons/bs";
-import { IoLogOutSharp } from "react-icons/io5";
+import { Badge } from "@mui/material";
+import { Link } from "react-router-dom";
+import {
+  MdOutlineDashboard,
+  MdOutlineShoppingCart,
+  MdOutlineLogout,
+} from "react-icons/md";
 import { useEffect, useState } from "react";
 import logo from "../../../assets/svg/logo.svg";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
@@ -9,7 +12,6 @@ import { logout, selectedUser } from "../../auth/auth-slice";
 import { selectedProduct } from "../product-slice";
 
 function HeaderComponent() {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const { cart } = useAppSelector(selectedProduct);
@@ -31,20 +33,33 @@ function HeaderComponent() {
           <Link to="/" className="flex items-center">
             <img src={logo} className="mr-3 h-6 sm:h-9" alt="Furnito Logo" />
           </Link>
-          <div className="flex items-center	">
-            <div className="text-primary-300">{user?.name}</div>
-            <Button onClick={() => navigate("/cart")}>
-              <Badge badgeContent={cartCount} color="primary">
-                <BsFillCartCheckFill color="#000" size="1.5rem" />
+          <div className="flex items-center	justify-end">
+            <div className="text-gray-600 mr-4">{user?.name}</div>
+            <Link to="/cart" className="mr-4">
+              <Badge
+                badgeContent={cartCount}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    color: "white",
+                    backgroundColor: "#d1a75e",
+                  },
+                }}
+              >
+                <MdOutlineShoppingCart color="#3a4a4a" size="1.5rem" />
               </Badge>
-            </Button>
-            <Button
+            </Link>
+            {user?.role === "admin" && (
+              <Link to="/admin" className="mr-4">
+                <MdOutlineDashboard color="#3a4a4a" size="1.5rem" />
+              </Link>
+            )}
+            <button
               type="button"
               onClick={logoutHandler}
-              className="text-primary-300"
+              className="text-primary-300 mr-4"
             >
-              <IoLogOutSharp color="#000" size="1.5rem" />
-            </Button>
+              <MdOutlineLogout color="#3a4a4a" size="1.5rem" />
+            </button>
           </div>
         </div>
       </nav>

@@ -9,13 +9,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
-import { resetCart, selectedProduct } from "../product-slice";
+import {
+  resetCart,
+  resetOrder,
+  selectedProduct,
+  updateOrder,
+} from "../product-slice";
 import FooterComponent from "../../../components/layout/footer/footer.component";
 import HeaderComponent from "./header.component";
+import { selectedUser } from "../../auth/auth-slice";
+import productService from "../services/product.service";
 
 function PaymentComponent() {
   const navigate = useNavigate();
   const { order } = useAppSelector(selectedProduct);
+  const { user } = useAppSelector(selectedUser);
 
   const dispatch = useAppDispatch();
   const [isProcessing, setIsProcessing] = React.useState(false);
@@ -33,10 +41,28 @@ function PaymentComponent() {
     if (total === 0) return;
     if (paymentStatus !== "succeeded") return;
     if (paymentStatus === "succeeded") {
-      dispatch(resetCart());
-      navigate("/profile");
+      console.log("payment succeeded");
     }
   }, []);
+
+  useEffect(() => {
+    if (paymentStatus === "succeeded" && order) {
+      const apiOrder = { ...order };
+      // @ts-ignore
+      delete apiOrder._id;
+      productService
+        .addOrder(apiOrder)
+        .then((res: any) => {
+          console.log(res);
+          dispatch(resetCart());
+          dispatch(resetOrder());
+          navigate("/profile");
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+    }
+  }, [dispatch, navigate, order, paymentStatus]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,14 +72,6 @@ function PaymentComponent() {
     }
     const cardEl = elements.getElement(CardElement);
     setIsProcessing(true);
-
-    const createOrder = () => {
-      // cart items and user details to be sent to the server
-      const result = axios.post(`${process.env.REACT_APP_BASE_API}/order/add`, {
-        ...order,
-      });
-      console.log(result);
-    };
 
     try {
       const res = await axios.post(`${process.env.REACT_APP_BASE_API}/stripe`, {
@@ -72,11 +90,20 @@ function PaymentComponent() {
         setPaymentStatus("Payment failed!");
       } else {
         setPaymentStatus(paymentIntent.status);
-        console.log(paymentIntent);
-        // create order and clear the cart
-        createOrder();
-        dispatch(resetCart());
-        navigate("/profile");
+        if (order && user) {
+          dispatch(
+            updateOrder({
+              ...order,
+              paymentInfo: {
+                id: String(paymentIntent.id),
+                status: paymentIntent.status,
+              },
+              user: user?.id,
+              orderStatus: "Processing",
+              paidAt: Date.now() as any,
+            }),
+          );
+        }
       }
     } catch (error) {
       console.error(error);

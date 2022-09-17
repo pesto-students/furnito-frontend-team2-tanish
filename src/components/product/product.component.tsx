@@ -23,7 +23,7 @@ function SingleProductComponent({ product }: { product: any }) {
           }}
           src={product.images[0]}
           alt="product"
-          className="w-full h-full object-cover object-center "
+          className="w-full h-full "
         />
       </Link>
       <motion.div

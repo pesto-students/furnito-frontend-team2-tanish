@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Rating from "@mui/material/Rating";
-import { BsFacebook, BsWhatsapp, BsInstagram } from "react-icons/bs";
+import { BsFacebook, BsWhatsapp, BsTwitter } from "react-icons/bs";
 import Avatar from "react-avatar";
 import moment from "moment/moment";
 import FormGroup from "@mui/material/FormGroup/FormGroup";
@@ -23,6 +23,7 @@ import {
 import "react-loading-skeleton/dist/skeleton.css";
 
 function ProductDetailsPage() {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const scrollToReview = useRef<HTMLDivElement>(null);
   const { user } = useAppSelector(selectedUser);
@@ -214,15 +215,30 @@ function ProductDetailsPage() {
                     </button>
                   </span>
                   <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
-                    <Link to="/" className="text-gray-500 mr-3">
+                    <a
+                      href={`https://wa.me/?text=${process.env.REACT_APP_BASE_API}${location.pathname}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 mr-3"
+                    >
                       <BsWhatsapp className="hover:text-secondary-100" />
-                    </Link>
-                    <Link to="/" className="text-gray-500 mr-3">
+                    </a>
+                    <a
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.REACT_APP_BASE_API}${location.pathname}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 mr-3"
+                    >
                       <BsFacebook className="hover:text-secondary-100" />
-                    </Link>
-                    <Link to="/" className="text-gray-500">
-                      <BsInstagram className="hover:text-secondary-100" />
-                    </Link>
+                    </a>
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=${process.env.REACT_APP_BASE_API}${location.pathname}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500"
+                    >
+                      <BsTwitter className="hover:text-secondary-100" />
+                    </a>
                   </span>
                 </div>
                 <p className="leading-relaxed">
@@ -276,7 +292,7 @@ function ProductDetailsPage() {
               </div>
             </div>
             <div
-              className="mx-8 w-full flex flex-wrap bg-grey-light"
+              className="w-full flex flex-wrap bg-grey-light"
               ref={scrollToReview}
             >
               {product.reviews.length > 0 &&
@@ -317,45 +333,6 @@ function ProductDetailsPage() {
                     </div>
                     <p className="mb-3 font-light text-gray-500 dark:text-gray-400">
                       {review?.comment}
-                    </p>
-                  </article>
-                ))}
-              {product.reviews.length > 0 &&
-                product.reviews.map((review: any) => (
-                  <article
-                    key={uuid()}
-                    className="w-full md:w-1/2 lg:w-1/4 shadow-md px-8 py-4 m-8"
-                  >
-                    <div className="flex items-center mb-4 space-x-4">
-                      <Avatar
-                        color="#D1A75E"
-                        className="rounded-full w-16 h-16 text-lg"
-                        name={review?.name}
-                        size="50"
-                      />
-                      <div className="space-y-1 font-medium dark:text-gray-600">
-                        <p>
-                          {review?.name}
-                          <time
-                            dateTime="2014-08-16 19:00"
-                            className="block text-sm text-gray-500 dark:text-gray-400"
-                          >
-                            {moment(product.updatedAt).format("MMMM Do YYYY")}
-                          </time>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center mb-1">
-                      <Rating
-                        value={review?.rating || <Skeleton />}
-                        precision={0.5}
-                        max={5}
-                        readOnly
-                        name="unique-rating"
-                      />
-                    </div>
-                    <p className="mb-3 font-light text-gray-500 dark:text-gray-400">
-                      {review?.comment || <Skeleton count={2} />}
                     </p>
                   </article>
                 ))}

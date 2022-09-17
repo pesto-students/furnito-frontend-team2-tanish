@@ -2,6 +2,7 @@ export type Orders = Order[];
 
 export interface ShippingInfo {
   name: string;
+  email: string;
   address: string;
   city: string;
   country: string;

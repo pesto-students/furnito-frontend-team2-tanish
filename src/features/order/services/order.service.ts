@@ -31,12 +31,13 @@ const getOrdersByUser = async (
 const cancelOrder = async (orderId: string): Promise<Orders | null> => {
   const response = await toast.promise(
     axios.patch(`${process.env.REACT_APP_BASE_API}/order/cancel/${orderId}`, {
+      ...headers,
       status: "cancelled",
     }),
     {
-      pending: "Fetching Orders...",
-      success: "Order fetched successfully",
-      error: "Unable to fetch orders",
+      pending: "Cancelling the Order...",
+      success: "Order cancelled successfully",
+      error: "Unable to cancel the order",
     },
   );
   return response.data;

@@ -49,6 +49,21 @@ export default function AddressForm(props: { handleChange: any }) {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <TextField
+                fullWidth
+                value={order?.shippingInfo.email}
+                onChange={handleChange("email")}
+                type="email"
+                name="email"
+                id="email"
+                variant="outlined"
+                size="small"
+              />
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3 mb-6 md:mb-0">
               <InputLabel htmlFor="address">Address</InputLabel>
               <TextField
                 fullWidth

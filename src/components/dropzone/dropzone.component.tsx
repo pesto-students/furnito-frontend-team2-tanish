@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineDelete, AiOutlineUpload } from "react-icons/ai";
 import axios from "axios";
+import productService from "../../features/product/services/product.service";
 
 const thumbInner = {
   display: "flex",
@@ -60,13 +61,9 @@ function Dropzone(props: any) {
       formData.append("timestamp", ((Date.now() / 1000) | 0).toString());
 
       // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-      return axios.post(
-        "https://api.cloudinary.com/v1_1/dh8fzzd4h/image/upload",
-        formData,
-        {
-          headers: { "X-Requested-With": "XMLHttpRequest" },
-        },
-      );
+      return productService.uploadFiles(formData).then((response) => {
+        return response;
+      });
     });
 
     // Once all the files are uploaded

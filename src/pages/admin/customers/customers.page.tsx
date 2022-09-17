@@ -1,4 +1,4 @@
-import { HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 import React, { useEffect, useState } from "react";
 import DataTableBase from "../../../components/data-table/data-table.component";
 import authService from "../../../features/auth/services/auth.service";
@@ -6,6 +6,7 @@ import { PaginatedSortModel } from "../../../features/product/models/paginated-s
 
 function CustomersPage() {
   const [users, setUsers] = useState(Array<any>());
+  const [totalRows, setTotalRows] = useState(0);
   const paginatedSortModel: PaginatedSortModel = {
     page: 1,
     limit: 10,
@@ -42,18 +43,11 @@ function CustomersPage() {
       name: "Action",
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: (row: { _id: any }) => (
-        <>
-          <HiOutlinePencilAlt
-            color="#3BB9FF"
-            fontSize="1.2rem"
-            onClick={() => handleButtonClick(row._id, "edit")}
-          />
-          <HiOutlineTrash
-            color="#FFA62F"
-            fontSize="1.2rem"
-            onClick={() => handleButtonClick(row._id, "delete")}
-          />
-        </>
+        <HiOutlineTrash
+          color="#FFA62F"
+          fontSize="1.2rem"
+          onClick={() => handleButtonClick(row._id, "delete")}
+        />
       ),
       ignoreRowClick: true,
       allowOverflow: true,
@@ -61,16 +55,31 @@ function CustomersPage() {
     },
   ];
 
-  useEffect(() => {
-    document.title = "Customers";
+  const getCustomers = async () => {
     authService
       .fetchCustomers(paginatedSortModel)
       .then((res: any) => {
         setUsers((prevState) => [...prevState, ...res.users]);
+        setTotalRows((prevState) => prevState + res.total);
       })
       .catch((err: any) => {
         throw new Error(err);
       });
+  };
+
+  const handlePageChange = (page: number) => {
+    paginatedSortModel.page = page;
+    return getCustomers();
+  };
+
+  const handlePerRowsChange = (perPage: number) => {
+    paginatedSortModel.limit = perPage;
+    return getCustomers();
+  };
+
+  useEffect(() => {
+    document.title = "Customers";
+    getCustomers();
   }, []);
 
   return (
@@ -79,9 +88,9 @@ function CustomersPage() {
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
             <div className="flex flex-wrap items-center">
-              <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
+              <div className="flex items-center justify-between space-x-4 2xl:container">
                 <h5 className="text-2xl text-gray-600 font-medium lg:block">
-                  Users
+                  Customers
                 </h5>
               </div>
             </div>
@@ -92,6 +101,9 @@ function CustomersPage() {
                 className="items-center w-full bg-transparent border-collapse"
                 columns={columns}
                 data={users}
+                totalRows={totalRows}
+                handlePageChange={handlePageChange}
+                handlePerRowsChange={handlePerRowsChange}
               />
             </div>
           </div>

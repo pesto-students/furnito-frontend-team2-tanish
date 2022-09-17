@@ -1,29 +1,64 @@
-import { HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
-import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DataTableBase from "../../../components/data-table/data-table.component";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
-import {
-  deleteProduct,
-  fetchProducts,
-  reset,
-  selectedProduct,
-} from "../../../features/product/product-slice";
+import productService from "../../../features/product/services/product.service";
+import { PaginatedSortModel } from "../../../features/product/models/paginated-sort-model";
 
 function ProductsPage() {
-  const [data, setData] = useState([]);
+  const [totalRows, setTotalRows] = useState(0);
+  const [pending, setPending] = React.useState(true);
+  const [products, setProducts] = useState(Array<any>());
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { isLoading, isSuccess, paginatedSortData, products } =
-    useAppSelector(selectedProduct);
+  const paginatedSortModel: PaginatedSortModel = {
+    page: 1,
+    limit: 10,
+    sortBy: "createdAt",
+    sortOrder: "desc",
+  };
 
-  function handleButtonClick(id: any, action: string) {
-    if (action === "delete") {
-      dispatch(deleteProduct(id));
-    }
-  }
+  const getProducts = async () => {
+    await productService
+      .fetchProducts(paginatedSortModel)
+      .then((res: any) => {
+        setPending(false);
+        setProducts([...res.products]);
+        setTotalRows(res.total);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
+
+  const deleteProductHandler = (id: string) => {
+    productService
+      .deleteProduct(id)
+      .then((res: any) => {
+        if (res.message === "Product deleted successfully") {
+          const newProducts = products.filter((product) => product._id !== id);
+          setProducts([...newProducts]);
+        }
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
+
+  const handlePageChange = (page: number) => {
+    paginatedSortModel.page = page;
+    return getProducts();
+  };
+
+  const handlePerRowsChange = (perPage: number) => {
+    paginatedSortModel.limit = perPage;
+    return getProducts();
+  };
+
+  useEffect(() => {
+    document.title = "Products";
+    getProducts();
+  }, []);
 
   const columns = [
     {
@@ -50,57 +85,36 @@ function ProductsPage() {
       name: "Action",
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: (row: { _id: any }) => (
-        <>
-          <HiOutlinePencilAlt
-            color="#3BB9FF"
-            fontSize="1.2rem"
-            onClick={() => handleButtonClick(row._id, "edit")}
-          />
-          <HiOutlineTrash
-            color="#FFA62F"
-            fontSize="1.2rem"
-            onClick={() => handleButtonClick(row._id, "delete")}
-          />
-        </>
+        <HiOutlineTrash
+          color="#FFA62F"
+          fontSize="1.2rem"
+          onClick={() => deleteProductHandler(row._id)}
+        />
       ),
       ignoreRowClick: true,
       allowOverflow: true,
       button: true,
     },
   ];
-
-  useEffect(() => {
-    dispatch(fetchProducts(paginatedSortData));
-  }, []);
-
-  if (isSuccess) {
-    // @ts-ignore
-    setData(products);
-    dispatch(reset());
-  }
-
-  if (isLoading)
-    return <CircularProgress sx={{ marginTop: "64px" }} color="primary" />;
-
   return (
     <div className="flex flex-wrap mt-4">
-      <div className="w-full mb-12 px-4 mx-8 -my-16">
+      <div className="w-full mb-12 px-4 -my-16">
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
-            <div className="flex flex-wrap items-center">
-              <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
+            <div className="flex flex-wrap items-center justify-between">
+              <div className="flex items-center space-x-4">
                 <h5 className="text-2xl text-gray-600 font-medium lg:block">
                   Products
                 </h5>
-                <button
-                  onClick={() => navigate("/admin/products/new")}
-                  type="button"
-                  className="text-white bg-primary-400 hover:bg-primary-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-400"
-                >
-                  <AiOutlinePlusCircle className="w-4 h-4 mr-2" />
-                  Add Product
-                </button>
               </div>
+              <button
+                onClick={() => navigate("/admin/products/new")}
+                type="button"
+                className="text-white bg-primary-400 hover:bg-primary-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-400"
+              >
+                <AiOutlinePlusCircle className="w-4 h-4 mr-2" />
+                Add Product
+              </button>
             </div>
           </div>
           <div className="block w-full overflow-x-auto">
@@ -108,7 +122,11 @@ function ProductsPage() {
               <DataTableBase
                 className="items-center w-full bg-transparent border-collapse"
                 columns={columns}
-                data={data}
+                data={products}
+                totalRows={totalRows}
+                pending={pending}
+                handlePageChange={handlePageChange}
+                handlePerRowsChange={handlePerRowsChange}
               />
             </div>
           </div>

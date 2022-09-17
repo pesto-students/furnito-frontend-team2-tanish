@@ -41,6 +41,7 @@ const initialState: ProductState = {
     _id: "",
     shippingInfo: {
       name: "Vasu Vallabh",
+      email: "vasu.vallabh@gmail.com",
       address: "B-5/7, 2nd Floor, Sector 12",
       city: "Bhubaneswar",
       state: "Odisha",
@@ -191,6 +192,11 @@ export const productSlice = createSlice({
       State.cart = [];
       return State;
     },
+    resetOrder: (state) => {
+      const State = { ...state };
+      State.order = initialState.order;
+      return State;
+    },
     incrementCart: (state, action: PayloadAction<ProductDocument>) => {
       const State = { ...state };
       State.cart = incrementQtyByOne(state.cart, action.payload);
@@ -206,7 +212,6 @@ export const productSlice = createSlice({
     },
 
     updateOrder: (state, action: PayloadAction<Order>) => {
-      console.log("action.payload", action.payload);
       const State = { ...state };
       State.order = action.payload;
       return State;
@@ -241,7 +246,7 @@ export const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         const State = { ...state };
         State.isLoading = false;
-        State.products = action.payload;
+        State.products = action.payload.products;
         State.isSuccess = true;
         return State;
       })
@@ -296,6 +301,7 @@ export const productSlice = createSlice({
 export const {
   reset,
   resetCart,
+  resetOrder,
   decrementCart,
   incrementCart,
   removeItemFromCart,

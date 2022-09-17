@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { ProductFormFieldModel } from "../models/product-form-field.model";
 import { PaginatedSortModel } from "../models/paginated-sort-model";
 import { Jwt } from "../../auth/models/jwt.model";
+import { Order } from "../../order/services/model/orders.model";
 
 const storedJwt: string | null = localStorage.getItem("jwt");
 const jwt: Jwt = storedJwt ? JSON.parse(storedJwt) : null;
@@ -29,6 +30,19 @@ const addProduct = async (
   return response.data;
 };
 
+const addOrder = async (order: Order): Promise<any | null> => {
+  console.log(order);
+  const response = await toast.promise(
+    axios.post(`${process.env.REACT_APP_BASE_API}/order/add`, order, headers),
+    {
+      pending: "Ordering...",
+      success: "Ordered successfully",
+      error: "Unable to order",
+    },
+  );
+  return response.data;
+};
+
 const updateProduct = async (
   product: ProductFormFieldModel,
 ): Promise<any | null> => {
@@ -45,14 +59,30 @@ const updateProduct = async (
 
 const deleteProduct = async (productId: string): Promise<any | null> => {
   const response = await toast.promise(
-    axios.delete(`${process.env.REACT_APP_BASE_API}/product/delete`, {
-      params: { id: productId },
-      ...headers,
-    }),
+    axios.delete(
+      `${process.env.REACT_APP_BASE_API}/product/delete/${productId}`,
+      {
+        ...headers,
+      },
+    ),
     {
       pending: "Deleting product...",
       success: "Product deleted successfully",
       error: "Unable to delete product",
+    },
+  );
+  return response.data;
+};
+
+const deleteOrder = async (id: string): Promise<any> => {
+  const response = await toast.promise(
+    axios.delete(`${process.env.REACT_APP_BASE_API}/order/delete/${id}`, {
+      ...headers,
+    }),
+    {
+      pending: "Deleting order...",
+      success: "Order deleted successfully",
+      error: "Unable to delete order",
     },
   );
   return response.data;
@@ -101,7 +131,7 @@ const fetchProducts = async (
       error: "Unable to load products",
     },
   );
-  return response.data.products;
+  return response.data;
 };
 
 const fetchProductsByCategory = async (
@@ -169,6 +199,24 @@ const allCount = async (): Promise<any> => {
   return response.data;
 };
 
+const uploadFiles = async (formData: any): Promise<any> => {
+  const response = await toast.promise(
+    axios.post(
+      "https://api.cloudinary.com/v1_1/dh8fzzd4h/image/upload",
+      formData,
+      {
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      },
+    ),
+    {
+      pending: "Uploading images to cloudinary...",
+      success: "Images uploaded to cloudinary successfully",
+      error: "Unable to upload images to cloudinary",
+    },
+  );
+  return response;
+};
+
 const fetchProductById = async (id: string): Promise<any> => {
   const response = await axios.get(
     `${process.env.REACT_APP_BASE_API}/product/get/${id}`,
@@ -195,6 +243,7 @@ const createProductReview = async (
 
 const productService = {
   addProduct,
+  addOrder,
   updateProduct,
   deleteProduct,
   deleteCategories,
@@ -206,6 +255,8 @@ const productService = {
   createProductReview,
   fetchProductsByCategory,
   allCount,
+  uploadFiles,
+  deleteOrder,
 };
 
 export default productService;

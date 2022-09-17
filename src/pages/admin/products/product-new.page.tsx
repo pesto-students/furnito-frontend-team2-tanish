@@ -103,6 +103,11 @@ function ProductNewPage() {
     dispatch(addProduct(productFormFieldModel as ProductFormFieldModel));
   };
 
+  if (isSuccess) {
+    dispatch(reset());
+    clearForm();
+  }
+
   if (isLoading)
     return <CircularProgress sx={{ marginTop: "64px" }} color="primary" />;
 
