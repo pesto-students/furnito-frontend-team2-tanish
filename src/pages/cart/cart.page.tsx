@@ -35,13 +35,13 @@ function CartPage() {
   }, 0);
 
   // calculate gst tax amount of 18% of subtotal
-  const taxPrice = itemsPrice * 0.18;
+  const taxPrice = Number((itemsPrice * 0.18).toFixed(2));
 
   // checkout.tsx charges
   const shippingPrice = 1500;
 
   // calculate the total price of the cart including gst tax
-  const totalPrice = itemsPrice + shippingPrice + taxPrice;
+  const totalPrice = Number((itemsPrice + shippingPrice + taxPrice).toFixed(2));
 
   const checkout = () => {
     const orderedItems: Array<OrderItem> = cart.map((item) => {

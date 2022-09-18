@@ -99,6 +99,7 @@ function LoginPage() {
                 <InputLabel htmlFor="password">Password</InputLabel>
                 <TextField
                   fullWidth
+                  autoComplete="on"
                   value={password}
                   onChange={passwordChangeHandler}
                   onBlur={passwordBlurHandler}

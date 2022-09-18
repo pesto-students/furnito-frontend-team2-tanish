@@ -1,18 +1,23 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { lazy } from "react";
 import PrivateRouteComponent from "../components/private-route/private-route.component";
-import HomePage from "../pages/home/home.page";
-import CartPage from "../pages/cart/cart.page";
 import RegisterPage from "../pages/auth/register/register.page";
 import LoginPage from "../pages/auth/login/login.page";
-import AdminDashboard from "../pages/admin/admin.dashboard";
-import ProductDetailsPage from "../pages/product-details/product-details.page";
-import ProfilePage from "../pages/profile/profile.page";
-import SofaPage from "../pages/sofa/sofa.page.";
 import CheckoutPage from "../pages/checkout.tsx/checkout.page";
-import PaymentComponent from "../features/product/components/payment.component";
-// import PaymentComponent from "../features/product/components/payment.component";
+import SofaPage from "../pages/sofa/sofa.page.";
+// lazy load home page
+const HomePage = lazy(() => import("../pages/home/home.page"));
+const ProductDetailsPage = lazy(
+  () => import("../pages/product-details/product-details.page"),
+);
+const PaymentComponent = lazy(
+  () => import("../features/product/components/payment.component"),
+);
+const CartPage = lazy(() => import("../pages/cart/cart.page"));
+const ProfilePage = lazy(() => import("../pages/profile/profile.page"));
+const AdminDashboard = lazy(() => import("../pages/admin/admin.dashboard"));
 
 function App() {
   return (
@@ -48,7 +53,7 @@ function App() {
           element={<PrivateRouteComponent page={<SofaPage />} />}
         />
         <Route
-          path="/admin*"
+          path="/admin/*"
           element={<PrivateRouteComponent page={<AdminDashboard />} />}
         />
         <Route path="/register" element={<RegisterPage />} />

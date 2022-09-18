@@ -20,10 +20,10 @@ function HomePage() {
                 High Quality Wood
               </h2>
               <p className="font-light text-gray-500 lg:mb-16 md:text-base sm:text-sm	font-comfortaa">
-                Pellentesque etiam blandit in tincidunt at donec. Eget ipsum
-                dignissim placerat nisi, adipiscing mauris non. Purus parturient
-                viverra nunc, tortor sit laoreet. Quam tincidunt aliquam
-                adipiscing tempor.
+                Furniture is an essential part of any home. It’s a tool for
+                enhancing comfort and can make a statement about personal style
+                and taste. Without tables, chairs, and sofas, a house would only
+                be a house, not a home.
               </p>
             </div>
           </div>

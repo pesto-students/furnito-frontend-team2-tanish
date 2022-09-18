@@ -227,7 +227,27 @@ function OrdersPage() {
   ];
 
   function handleUpdateOrder() {
-    console.log("update order", orderStatus);
+    // update the order in the database
+    productService.updateOrderStatus(showId, orderStatus).then((res) => {
+      console.log(res);
+      if (res.orderStatus === orderStatus) {
+        // update the order in the orders array
+        const newOrders = orders.map((order) => {
+          if (order._id === showId) {
+            return {
+              ...order,
+              orderStatus,
+            };
+          }
+          return order;
+        });
+        setOrders(newOrders);
+        setOrderUpdate(false);
+      }
+    });
+    // update the order in the orders array
+    // close the dialog
+    setOrderUpdate(false);
   }
 
   return (
@@ -310,11 +330,10 @@ function OrdersPage() {
                           value={orderStatus}
                           onChange={(e) => setOrderStatus(e.target.value)}
                         >
-                          <option value="pending">Pending</option>
-                          <option value="processing">Processing</option>
-                          <option value="shipping">Shipping</option>
-                          <option value="delivered">Delivered</option>
-                          <option value="canceled">Canceled</option>
+                          <option value="Processing">Processing</option>
+                          <option value="Shipped">Shipped</option>
+                          <option value="Delivered">Delivered</option>
+                          <option value="Canceled">Canceled</option>
                         </select>
                       </label>
                     </div>

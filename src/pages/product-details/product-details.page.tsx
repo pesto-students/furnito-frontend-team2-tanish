@@ -305,7 +305,7 @@ function ProductDetailsPage() {
                       <Avatar
                         color="#D1A75E"
                         className="rounded-full w-16 h-16 text-lg"
-                        name={review?.name || <Skeleton />}
+                        name={review?.name}
                         size="50"
                       />
                       <div className="space-y-1 font-medium dark:text-gray-600">

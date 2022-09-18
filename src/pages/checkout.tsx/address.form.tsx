@@ -8,9 +8,6 @@ export default function AddressForm(props: { handleChange: any }) {
   const { order } = useAppSelector(selectedProduct);
   const { handleChange } = props;
   const navigate = useNavigate();
-  const navigateToPayment = () => {
-    navigate("/checkout/payment");
-  };
 
   return (
     <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
@@ -26,6 +23,10 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.name}
                 onChange={handleChange("name")}
+                error={order?.shippingInfo.name === ""}
+                helperText={
+                  order?.shippingInfo.name === "" && "Name is required"
+                }
                 type="name"
                 name="name"
                 id="name"
@@ -39,6 +40,17 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.phoneNo}
                 onChange={handleChange("phoneNo")}
+                error={
+                  order?.shippingInfo.phoneNo === "" ||
+                  !order?.shippingInfo.phoneNo.match(
+                    /^(\+\d{1,3}[- ]?)?\d{10}$/g,
+                  )
+                }
+                helperText={
+                  !order?.shippingInfo.phoneNo.match(
+                    /^(\+\d{1,3}[- ]?)?\d{10}$/g,
+                  ) && "Valid Number is required"
+                }
                 type="phoneNo"
                 name="phoneNo"
                 id="phoneNo"
@@ -54,6 +66,17 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.email}
                 onChange={handleChange("email")}
+                error={
+                  order?.shippingInfo.email === "" ||
+                  !order?.shippingInfo.email.match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g,
+                  )
+                }
+                helperText={
+                  !order?.shippingInfo.email.match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g,
+                  ) && "Valid Email is required"
+                }
                 type="email"
                 name="email"
                 id="email"
@@ -69,6 +92,10 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.address}
                 onChange={handleChange("address")}
+                error={order?.shippingInfo.address === ""}
+                helperText={
+                  order?.shippingInfo.address === "" && "Address is required"
+                }
                 type="area"
                 name="address"
                 id="address"
@@ -84,6 +111,10 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.city}
                 onChange={handleChange("city")}
+                error={order?.shippingInfo.city === ""}
+                helperText={
+                  order?.shippingInfo.city === "" && "City is required"
+                }
                 type="text"
                 name="city"
                 id="city"
@@ -97,6 +128,10 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.state}
                 onChange={handleChange("state")}
+                error={order?.shippingInfo.state === ""}
+                helperText={
+                  order?.shippingInfo.state === "" && "State is required"
+                }
                 type="text"
                 name="state"
                 id="state"
@@ -107,11 +142,19 @@ export default function AddressForm(props: { handleChange: any }) {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <InputLabel htmlFor="pincode">Pin Code</InputLabel>
+              <InputLabel htmlFor="pinCode">Pin Code</InputLabel>
               <TextField
                 fullWidth
                 value={order?.shippingInfo.pinCode}
                 onChange={handleChange("pinCode")}
+                error={
+                  order?.shippingInfo.pinCode === "" ||
+                  !order?.shippingInfo.pinCode.match(/^[1-9][0-9]{5}$/g)
+                }
+                helperText={
+                  !order?.shippingInfo.pinCode.match(/^[1-9][0-9]{5}$/g) &&
+                  "Valid Pin Code is required"
+                }
                 type="number"
                 name="pinCode"
                 id="pinCode"
@@ -125,6 +168,10 @@ export default function AddressForm(props: { handleChange: any }) {
                 fullWidth
                 value={order?.shippingInfo.country}
                 onChange={handleChange("country")}
+                error={order?.shippingInfo.country === ""}
+                helperText={
+                  order?.shippingInfo.country === "" && "Country is required"
+                }
                 type="text"
                 name="country"
                 id="country"
@@ -134,9 +181,9 @@ export default function AddressForm(props: { handleChange: any }) {
             </div>
           </div>
           <button
-            onClick={() => navigateToPayment()}
-            type="submit"
-            className="w-full text-white bg-primary-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            onClick={() => navigate("/checkout/payment")}
+            type="button"
+            className="w-full text-white bg-primary-200 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Continue
           </button>

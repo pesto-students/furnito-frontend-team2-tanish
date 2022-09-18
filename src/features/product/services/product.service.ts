@@ -103,7 +103,24 @@ const deleteCategories = async (categoryId: string): Promise<any | null> => {
   return response.data;
 };
 
+const updateOrderStatus = async (id: string, status: string): Promise<any> => {
+  const response = await toast.promise(
+    axios.patch(
+      `${process.env.REACT_APP_BASE_API}/order/update/${id}`,
+      { status },
+      headers,
+    ),
+    {
+      pending: "Updating order status...",
+      success: "Order status updated successfully",
+      error: "Unable to update order status",
+    },
+  );
+  return response.data;
+};
+
 const fetchProduct = async (id: string): Promise<any | null> => {
+  console.log({ ...headers });
   const response = await toast.promise(
     axios.get(`${process.env.REACT_APP_BASE_API}/product/get:${id}`, {
       ...headers,
@@ -257,6 +274,7 @@ const productService = {
   allCount,
   uploadFiles,
   deleteOrder,
+  updateOrderStatus,
 };
 
 export default productService;

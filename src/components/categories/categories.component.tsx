@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import bed from "../../assets/images/bed.png";
+import bsofa from "../../assets/images/bsofa.png";
 import table from "../../assets/images/table.png";
 import decor from "../../assets/images/decor.png";
 import decor_two from "../../assets/images/decor_two.png";
@@ -20,7 +21,7 @@ export default function CategoriesComponent() {
               <div className="relative group flex justify-center items-center h-full w-full">
                 <img
                   className="object-center object-cover h-full w-full"
-                  src={decor}
+                  src={bsofa}
                   alt="sofa"
                 />
                 <button

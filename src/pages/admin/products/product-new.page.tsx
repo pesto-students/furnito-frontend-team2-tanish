@@ -256,8 +256,8 @@ function ProductNewPage() {
                       helperText={stockHasError ? "Enter the valid Stock" : ""}
                       InputProps={{
                         inputProps: {
-                          max: 100,
-                          min: 10,
+                          max: 20,
+                          min: 1,
                         },
                       }}
                       type="number"

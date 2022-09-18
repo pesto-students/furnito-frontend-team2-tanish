@@ -15,6 +15,7 @@ import {
 import { PaginatedSortModel } from "../../features/product/models/paginated-sort-model";
 import "react-loading-skeleton/dist/skeleton.css";
 import EmptyOrderPage from "../empty-order/empty-order.page";
+import productService from "../../features/product/services/product.service";
 
 function ProfilePage() {
   const { user } = useAppSelector(selectedUser);
@@ -44,11 +45,16 @@ function ProfilePage() {
 
   const cancelOrder = (_id: string) => {
     try {
-      orderService.cancelOrder(_id).then((res: any) => {
-        if (res) {
-          // here write the logic to update the current page
-          // without reloading the page
-          window.location.reload();
+      productService.updateOrderStatus(_id, "Cancelled").then((res: any) => {
+        if (res.orderStatus === "Cancelled") {
+          // update the order status
+          setOrders((prevState) =>
+            prevState.map((order) =>
+              order._id === _id
+                ? { ...order, orderStatus: "Cancelled" }
+                : order,
+            ),
+          );
         }
       });
     } catch (error: any) {

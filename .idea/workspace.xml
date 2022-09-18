@@ -2,27 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/empty-order/empty-order.page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/bsofa.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/data-table/data-table.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-table/data-table.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dropzone/dropzone.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dropzone/dropzone.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/footer/footer.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/footer/footer.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product/product.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/product.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/models/display-user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/models/display-user.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/order/services/model/orders.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/order/services/model/orders.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categories/categories.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/popular-products/popular-products.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/popular-products/popular-products.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/order/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/order/services/order.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/components/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/components/header.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/product/components/payment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/components/payment.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/product-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/product-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/product/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/services/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/admin-navbar.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/admin-navbar.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/admin.dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/admin.dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/customers/customers.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/orders/orders.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/orders/orders.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/products/product-new.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/product-new.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/products/products.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/products.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/auth/login/login.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login/login.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/register/register.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register/register.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/cart/cart.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cart/cart.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/checkout.tsx/address.form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout.tsx/address.form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/home.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-details.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-details.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/profile.page.tsx" afterDir="false" />
     </list>
@@ -121,8 +115,8 @@
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\public" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\images" />
+      <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\public" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\shared" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\shared\utils" />
       <recent name="D:\Pesto\Furnito\furnito-frontend-team2-tanish\src\assets\svg" />
@@ -216,7 +210,7 @@
       <workItem from="1663247468940" duration="1052000" />
       <workItem from="1663295661823" duration="8888000" />
       <workItem from="1663315935995" duration="5359000" />
-      <workItem from="1663334300739" duration="30748000" />
+      <workItem from="1663334300739" duration="42928000" />
     </task>
     <task id="LOCAL-00001" summary="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component">
       <created>1660455555085</created>
@@ -323,7 +317,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663316106173</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Order Status&#10;Admin Icons&#10;Pagination">
+      <created>1663429717549</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1663429717549</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,6 +367,7 @@
     <MESSAGE value="logs removed" />
     <MESSAGE value="Order State&#10;Payment Gateway" />
     <MESSAGE value=".env updated" />
-    <option name="LAST_COMMIT_MESSAGE" value=".env updated" />
+    <MESSAGE value="Order Status&#10;Admin Icons&#10;Pagination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Order Status&#10;Admin Icons&#10;Pagination" />
   </component>
 </project>

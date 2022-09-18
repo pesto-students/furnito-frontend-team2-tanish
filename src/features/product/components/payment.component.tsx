@@ -62,7 +62,7 @@ function PaymentComponent() {
           console.log(err);
         });
     }
-  }, [dispatch, navigate, order, paymentStatus]);
+  }, [paymentStatus]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -114,7 +114,7 @@ function PaymentComponent() {
   };
 
   return (
-    <div className="flex flex-col my-20 px-8 py-4 rounded overflow-hidden shadow-lg">
+    <div className="flex flex-col my-20 px-8 py-4 rounded overflow-hidden shadow-lg md:mx-[12rem] lg:mx-[18rem]">
       <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
         Payment
       </h1>

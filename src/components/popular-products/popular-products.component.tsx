@@ -12,6 +12,8 @@ function PopularProducts() {
   const { products, paginatedSortData } = useAppSelector(selectedProduct);
 
   useEffect(() => {
+    document.title = "Home";
+    window.scrollTo(0, 0);
     dispatch(fetchProducts(paginatedSortData));
   }, []);
 

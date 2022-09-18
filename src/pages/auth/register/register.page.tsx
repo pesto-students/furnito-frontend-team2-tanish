@@ -146,6 +146,7 @@ function RegisterPage() {
                 <InputLabel htmlFor="password">Password</InputLabel>
                 <TextField
                   fullWidth
+                  autoComplete="off"
                   value={password}
                   onChange={passwordChangeHandler}
                   onBlur={passwordBlurHandler}
@@ -168,6 +169,7 @@ function RegisterPage() {
                 </InputLabel>
                 <TextField
                   fullWidth
+                  autoComplete="off"
                   value={confirmPassword}
                   onChange={confirmPasswordChangeHandler}
                   onBlur={confirmPasswordBlurHandler}
