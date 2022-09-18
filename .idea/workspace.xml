@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddd1d47e-da6c-45f3-a255-bb728cd8b704" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/_redirects" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/order/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/order/services/order.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/product/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/services/product.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +196,7 @@
       <workItem from="1663247468940" duration="1052000" />
       <workItem from="1663295661823" duration="8888000" />
       <workItem from="1663315935995" duration="5359000" />
-      <workItem from="1663334300739" duration="45027000" />
+      <workItem from="1663334300739" duration="47235000" />
     </task>
     <task id="LOCAL-00001" summary="UI pages Added&#10;1. User&#10;2. Cart&#10;3. Checkout&#10;4. Admin -&gt; Dashboard&#10;5. Products&#10;&#10;Also update ui for the product component">
       <created>1660455555085</created>
@@ -323,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663475124382</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="redirects added">
+      <created>1663479671707</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1663479671707</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +377,7 @@
     <MESSAGE value="Order Status&#10;Admin Icons&#10;Pagination" />
     <MESSAGE value="Updated images and applied lazy loading" />
     <MESSAGE value="App routing updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="App routing updated" />
+    <MESSAGE value="redirects added" />
+    <option name="LAST_COMMIT_MESSAGE" value="redirects added" />
   </component>
 </project>

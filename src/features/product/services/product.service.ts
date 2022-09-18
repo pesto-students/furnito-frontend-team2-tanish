@@ -6,10 +6,10 @@ import { Jwt } from "../../auth/models/jwt.model";
 import { Order } from "../../order/services/model/orders.model";
 
 const storedJwt: string | null = localStorage.getItem("jwt");
-const jwt: Jwt = storedJwt ? JSON.parse(storedJwt) : null;
+const jwtToken: Jwt = storedJwt ? JSON.parse(storedJwt) : null;
 
 const headers = {
-  headers: { Authorization: `Bearer ${jwt?.token}` },
+  headers: { Authorization: `Bearer ${jwtToken?.token}` },
 };
 
 const addProduct = async (
