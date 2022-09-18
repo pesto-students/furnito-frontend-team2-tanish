@@ -1,1 +1,1 @@
-Furito: https://develop--neon-alfajores-419119.netlify.app/
+Furnito: https://develop--neon-alfajores-419119.netlify.app/
